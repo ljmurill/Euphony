@@ -2,12 +2,16 @@ const asyncHandler = require('express-async-handler');
 const { setTokenCookie } = require('../../utils/auth.js');
 const { User } = require('../../db/models');
 const { restoreUser, requireAuth } = require('../../utils/auth.js');
-
+const sessionRouter = require('../api/session');
+const usersRouter = require('../api/user');
 const router = require('express').Router();
 
-// router.post('/test', function(req, res) {
-//     res.json({ requestBody: req.body });
-// });
+router.use('/session', sessionRouter);
+router.use('/users', usersRouter);
+
+router.post('/test', function(req, res) {
+    res.json({ requestBody: req.body });
+});
 
 // router.get('/set-token-cookie', asyncHandler(async (_req, res) => {
 //     const user = await User.findOne({
