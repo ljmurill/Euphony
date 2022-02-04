@@ -1,0 +1,15 @@
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.loginButton{
+    background-color: transparent;
+    border: none;
+}
+
+.loginHeader{
+    margin: 0;
+    padding: 0;
+}

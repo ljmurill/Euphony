@@ -1,20 +1,15 @@
 import React, {useState} from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import './LoginForm.css';
 
-function LoginFormPage(){
+function LoginForm(){
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
 
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user);
-    console.log('SESSION USER',sessionUser)
-    if(sessionUser){
-        return <Redirect to='/'/>
-    };
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,37 +23,38 @@ function LoginFormPage(){
     };
 
     return(
-        <div>
+        <div className='loginFormChildren'>
             <form onSubmit={handleSubmit} className='loginForm'>
-                <ul>
+
+                <ul className='loginHeader'>
+                    Login
                     {errors.length > 0 && errors.map((error, i)=> {
                         return <li key={i}>{error}</li>
                     })}
                 </ul>
                 <label htmlFor='credential'>
                     Username or Email
-                    <input
-                        type='text'
-                        value={credential}
-                        onChange={(e) => setCredential(e.target.value)}
-                        required
-                    />
                 </label>
+                <input
+                    type='text'
+                    value={credential}
+                    onChange={(e) => setCredential(e.target.value)}
+                    required
+                />
                 <label htmlFor='password'>
                     Password
-                    <input
-                        type='text'
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
                 </label>
-                <label>
-                    <button type='submit'>Login</button>
-                </label>
+                <input
+                    type='text'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+                <button type='submit'>Login</button>
+
             </form>
         </div>
     );
 }
 
-export default LoginFormPage;
+export default LoginForm;
