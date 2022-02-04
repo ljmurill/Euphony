@@ -1,0 +1,18 @@
+.navigation{
+    list-style-type: none;
+
+}
+
+.link{
+    text-decoration: none;
+    padding-right: 10px;
+}
+
+.profileButton{
+    background-color: transparent;
+    border: 1px;
+}
+
+.profile-dropdown{
+    list-style-type: none;
+}
