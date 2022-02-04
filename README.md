@@ -1,1 +1,1 @@
-# ReduxProject
+# Euphony
