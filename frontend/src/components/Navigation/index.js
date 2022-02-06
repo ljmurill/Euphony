@@ -21,12 +21,17 @@ function Navigation({isLoaded}) {
     }
 
     return (
-        <ul className="navigation">
-            <li className="total_link">
-                <NavLink exact to="/" className='link'>Home</NavLink>
-                {isLoaded && sessionLinks}
-            </li>
-        </ul>
+        <div className="top_container">
+            <nav className="navigation">
+                <div className="total_link">
+                    <NavLink exact to="/" className='link'><i class="fab fa-soundcloud fa-2x"> Euphony </i></NavLink>
+                </div>
+                <div>
+                    {isLoaded && sessionLinks}
+                </div>
+            </nav>
+        </div>
+
     )
 }
 
