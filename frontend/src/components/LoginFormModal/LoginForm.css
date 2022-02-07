@@ -32,7 +32,6 @@
 .loginHeader{
     margin-bottom: 15px;
     margin-top: 0;
-    padding: 0;
 }
 
 .loginModalButton{
@@ -41,8 +40,9 @@
     border: none;
     border-radius: 5px;
     width: 150px;
-    height: 20px;
+    padding: 5px;
     font-size: medium;
+    margin-top: 10px;
 }
 
 .demoUserButton{
@@ -51,7 +51,7 @@
     border: none;
     border-radius: 5px;
     width: 150px;
-    height: 20px;
+    padding: 5px;
     font-size: medium;
 }
 
