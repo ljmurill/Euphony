@@ -15,7 +15,7 @@ function Navigation({isLoaded}) {
         sessionLinks = (
             <>
               <LoginFormModal />
-              <NavLink to="/signup" className='link'>Sign Up</NavLink>
+              <button className="signup-button"><NavLink to="/signup" className='link'>Sign Up</NavLink></button>
             </>
         )
     }
@@ -26,7 +26,7 @@ function Navigation({isLoaded}) {
                 <div className="total_link">
                     <NavLink exact to="/" className='link'><i class="fab fa-soundcloud fa-2x"> Euphony </i></NavLink>
                 </div>
-                <div>
+                <div class='right-navigation'>
                     {isLoaded && sessionLinks}
                 </div>
             </nav>

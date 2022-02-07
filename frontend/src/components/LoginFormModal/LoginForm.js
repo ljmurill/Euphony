@@ -25,32 +25,33 @@ function LoginForm(){
     return(
         <div className='loginFormChildren'>
             <form onSubmit={handleSubmit} className='loginForm'>
-
+                <i class="fab fa-soundcloud fa-3x login"/>
                 <ul className='loginHeader'>
-                    Login
                     {errors.length > 0 && errors.map((error, i)=> {
                         return <li key={i}>{error}</li>
                     })}
                 </ul>
-                <label htmlFor='credential'>
-                    Username or Email
-                </label>
                 <input
                     type='text'
+                    className='credentialsInput'
+                    placeholder='Username or Email'
                     value={credential}
                     onChange={(e) => setCredential(e.target.value)}
                     required
                 />
-                <label htmlFor='password'>
-                    Password
-                </label>
                 <input
                     type='text'
+                    className='passwordInput'
+                    placeholder='Password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                <button type='submit'>Login</button>
+                <button type='submit' className='loginModalButton'>Login</button>
+                <button type='submit' className='demoUserButton' onClick={() => {
+                    setCredential('Demolicious')
+                    setPassword('password')
+                }}>Demo User</button>
 
             </form>
         </div>

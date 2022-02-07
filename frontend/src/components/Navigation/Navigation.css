@@ -20,11 +20,13 @@ body{
     list-style-type: none;
     display: flex;
     justify-content: space-between;
+    margin: 0 15px;
 }
 
 .link{
     text-decoration: none;
-    padding-right: 10px;
+    color: white;
+    font-family: inherit;
 }
 
 .profileButton{
@@ -37,5 +39,21 @@ body{
 }
 
 .fab.fa-soundcloud.fa-2x{
+    color: white;
+}
+
+.right-navigation{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 125px;
+}
+
+.signup-button{
+    background-color: rgb(113, 62, 172);
+    border: none;
+    font-family: inherit;
+    font-size: 15px;
+    border-radius: 3px;
     color: white;
 }

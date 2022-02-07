@@ -21,6 +21,22 @@
 #modal-content {
     position: absolute;
     background-color:white;
-    width: 400px;
-    height: 200px;
+    width: 300px;
+    height: 350px;
+    padding:10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fas.fa-times.fa-2x{
+    color: white;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+.xButton{
+    display: flex;
+    flex-direction: row-reverse;
 }

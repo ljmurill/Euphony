@@ -2,14 +2,64 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    align-items: center;
+    gap: 10px;
 }
 
 .loginButton{
-    background-color: transparent;
+    /* background-color:rgb(113, 62, 172); */
+    background-color: white;
     border: none;
+    font-family: inherit;
+    font-size: 15px;
+    border: 1px solid rgb(113, 62, 172);
+    border-radius: 3px;
+    color: rgb(113, 62, 172);
 }
 
 .loginHeader{
-    margin: 0;
+    margin-bottom: 15px;
+    margin-top: 0;
     padding: 0;
+}
+
+.loginModalButton{
+    color: white;
+    background-color: rgb(113, 62, 172);
+    border: none;
+    border-radius: 5px;
+    width: 150px;
+    height: 20px;
+    font-size: medium;
+}
+
+.demoUserButton{
+    color: white;
+    background-color: rgb(113, 62, 172);
+    border: none;
+    border-radius: 5px;
+    width: 150px;
+    height: 20px;
+    font-size: medium;
+}
+
+.credentialsInput{
+    width: 250px;
+    height: 25px;
+    font-size: large;
+    border-radius: 5px;
+    border: 1px solid rgb(119, 121, 121);
+}
+
+.passwordInput{
+    width: 250px;
+    height: 25px;
+    font-size: large;
+    border-radius: 5px;
+    border: 1px solid rgb(119, 121, 121);
+}
+
+.fab.fa-soundcloud.fa-3x.login{
+    color: rgb(113, 62, 172);
 }
