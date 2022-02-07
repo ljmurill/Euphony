@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import { restoreUser } from './store/session';
 import SignupFormPage from './components/SignupFormPage';
 import Navigation from './components/Navigation';
+import Home from './components/HomePage';
 
 
 
@@ -18,9 +19,12 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      {/* <Navigation isLoaded={isLoaded} /> */}
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            <Home isLoaded={isLoaded}/>
+          </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
