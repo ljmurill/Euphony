@@ -25,9 +25,9 @@ function App() {
           <Route exact path="/">
             <Home isLoaded={isLoaded}/>
           </Route>
-          <Route path="/signup">
+          {/* <Route path="/signup">
             <SignupFormPage />
-          </Route>
+          </Route> */}
         </Switch>
       )}
     </>
