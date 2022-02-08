@@ -10,9 +10,9 @@ router.get('/', asyncHandler(async(req, res) => {
     const song = await db.Song.findAll({
         include: [db.User]
     });
-    console.log(song)
+    
     if(song){
-        res.json({song});
+        res.json(song);
     }
 }));
 

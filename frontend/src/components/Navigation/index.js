@@ -26,9 +26,9 @@ function Navigation({isLoaded}) {
         <div className="top_container">
             <nav className="navigation">
                 <div className="total_link">
-                    <NavLink exact to="/" className='link'><i class="fab fa-soundcloud fa-2x"> Euphony </i></NavLink>
+                    <NavLink exact to="/" className='link'><i className="fab fa-soundcloud fa-2x"> Euphony </i></NavLink>
                 </div>
-                <div class='right-navigation'>
+                <div className='right-navigation'>
                     {isLoaded && sessionLinks}
                 </div>
             </nav>

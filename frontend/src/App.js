@@ -25,9 +25,15 @@ function App() {
           <Route exact path="/">
             <Home isLoaded={isLoaded}/>
           </Route>
-          {/* <Route path="/signup">
-            <SignupFormPage />
-          </Route> */}
+          <Route path="/api/users/:userId">
+
+          </Route>
+          <Route path="/api/songs/:songId">
+
+          </Route>
+          <Route>
+            404 Page
+          </Route>
         </Switch>
       )}
     </>
