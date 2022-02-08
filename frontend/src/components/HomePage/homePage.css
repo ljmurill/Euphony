@@ -54,9 +54,10 @@
 .searchBar{
     display: flex;
     justify-content: center;
-    height: 400px;
     align-items: center;
     flex-direction: column;
+    position: relative;
+    top:25%;
 }
 
 .searchInput{
@@ -75,4 +76,8 @@
     background-color: rgba(194, 193, 193, 0.5);
     border: none;
     border-radius: 3px;
+}
+
+.searchAndCreate{
+    display: flex;
 }

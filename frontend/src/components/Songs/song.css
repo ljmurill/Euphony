@@ -1,0 +1,27 @@
+.createSong{
+    background-color: rgb(8, 7, 7);
+}
+
+.createSongDiv{
+    width: inherit;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.songForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    gap: 10px;
+}
+
+.input{
+    width: 300px;
+    height: 40px;
+}

@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import { useHistory } from "react-router-dom";
 import './Navigation.css';
 
 function ProfileButton({user}){
     const dispatch = useDispatch();
     const [menu, setMenu] = useState(false);
+    const history = useHistory();
 
     const openMenu =() => {
         if(menu) return;
@@ -27,6 +29,8 @@ function ProfileButton({user}){
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout());
+        history.push('/');
+
     };
 
     return (

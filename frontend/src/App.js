@@ -6,6 +6,7 @@ import { restoreUser } from './store/session';
 import SignupFormPage from './components/SignupFormPage';
 import Navigation from './components/Navigation';
 import Home from './components/HomePage';
+import CreateSong from './components/Songs/CreateSong';
 
 
 
@@ -24,6 +25,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home isLoaded={isLoaded}/>
+          </Route>
+          <Route path="/api/songs/create">
+            <CreateSong isLoaded={isLoaded}/>
           </Route>
           <Route path="/api/users/:userId">
 
