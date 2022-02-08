@@ -25,7 +25,7 @@ function LoginForm(){
     return(
         <div className='loginFormChildren'>
             <form onSubmit={handleSubmit} className='loginForm'>
-                <i class="fab fa-soundcloud fa-3x login"/>
+                <i className="fab fa-soundcloud fa-3x login"/>
                 <ul className='loginHeader'>
                     {errors.length > 0 && errors.map((error, i)=> {
                         return <li key={i}>{error}</li>

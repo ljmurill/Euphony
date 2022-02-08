@@ -38,7 +38,7 @@ function SignupForm() {
     return (
         <div className='signupChildren'>
             <form onSubmit={handleSubmit} className='signUpForm'>
-                <i class="fab fa-soundcloud fa-3x login"/>
+                <i className="fab fa-soundcloud fa-3x login"/>
                 <ul className='signupHeader'>
                     {errors.length > 0 && errors.map((error, i) => {
                         return <li key={i}>{error}</li>
