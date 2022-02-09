@@ -57,6 +57,7 @@
     border-radius: 3px;
     color: white;
     padding: 5px;
+    margin-left: 10px;
 }
 
 .fileName{
@@ -75,4 +76,37 @@
     border-radius: 3px;
     color: white;
     padding: 5px;
+    width: 150px;
+    height: 40px;
+}
+
+.songButton:hover{
+    color:rgb(113, 62, 172);
+    background-color: white;
+}
+.errorsList{
+    list-style-type: none;
+}
+
+.errorsSection{
+    background-color: rgb(241, 129, 129);
+    width: 300px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.formTitle{
+    color: white;
+}
+
+.fa-solid.fa-boombox{
+    color: white;
+}
+
+.formHeader{
+    display: flex;
 }

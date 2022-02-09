@@ -56,9 +56,9 @@ const songsReducer = (state = initialState, action) => {
             newState.songs = [...action.allSongs];
             return newState;
         case ADD_SONG:
-            
-            newState = {...state};
 
+            newState = {...state};
+            console.log(action.song)
             newState.songs = [...newState.songs, action.song];
             return newState;
         default:

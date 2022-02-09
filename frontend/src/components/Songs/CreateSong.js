@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import '../Songs/song.css';
 import { useEffect, useState } from "react";
 import {addOneSong} from '../../store/songs';
+import { useHistory, Redirect } from "react-router-dom";
 
 function CreateSong({isLoaded}){
     const dispatch = useDispatch();
+    const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const [title, setTitle] = useState('');
     const [songLink, setSongLink] = useState('');
@@ -14,7 +16,7 @@ function CreateSong({isLoaded}){
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        setErrors([])
+        setErrors([]);
 
         const newSong = {
             userId: sessionUser.id,
@@ -25,22 +27,14 @@ function CreateSong({isLoaded}){
 
         const songError =  await dispatch(addOneSong(newSong))
             .catch(async (res) => {
-                console.log('RESS', res)
                 const data = await res.json();
                 if(data && data.errors) setErrors(data.errors);
             })
 
-            
-        // const song = await dispatch(addOneSong(newSong));
-
-        // if (song.errors){
-        //     setErrors(song.errors)
-        // }
-        // .catch(async (res) => {
-        //     const data = await res.json();
-        //     if(data && data.errors) setErrors(data.errors);
-        // })
-
+        if(songError && songError.status === 200){
+            reset();
+            history.push('/');
+        }
     }
 
     const reset = () => {
@@ -54,10 +48,20 @@ function CreateSong({isLoaded}){
         <div className="createSong">
             <Navigation isLoaded={isLoaded}/>
             <div className="createSongDiv">
-                {errors.length > 0 &&
-                    errors.map((error, i) => {
-                        return <li key = {i}>{error}</li>
+                <div className="formHeader">
+                <h1 className="formTitle">Share your Music</h1>
+                <i className="fa-solid fa-boombox"></i>
+                </div>
+                {errors.length > 0 ? <div className="errorsSection">
+                    {errors.map((error, i) => {
+                        return <li className='errorsList' key = {i}>{error}</li>
                     })}
+                </div>: ''}
+                {/* {errors.length > 0 &&
+                    errors.map((error, i) => {
+                        return <li className='errorsList' key = {i}>{error}</li>
+                    })} */}
+
                 <form className="songForm" onSubmit={handleSubmit}>
                     <input
                     onChange={(e) => setTitle(e.target.value)}

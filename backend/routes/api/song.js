@@ -19,7 +19,9 @@ const songValidation = [
 
 router.get('/', asyncHandler(async(req, res) => {
     const song = await db.Song.findAll({
-        include: [db.User]
+        include: [db.User],
+        limit: 20,
+        order: [['updatedAt', 'DESC']]
     });
 
     if(song){
@@ -31,19 +33,21 @@ router.get('/', asyncHandler(async(req, res) => {
 
 router.post('/create', songValidation, asyncHandler(async(req, res, next) => {
     const {userId, title, url, imageUrl} = req.body;
-    const User = await db.User.findByPk(userId);
     const validatorErrors = validationResult(req);
 
     if(validatorErrors.isEmpty()){
-        const newSong = await db.Song.create({
+        let newSong = await db.Song.create({
             userId,
             title,
             url,
             imageUrl
         });
 
-        newSong.User = User;
-        res.json({newSong});
+       const song = await db.Song.findByPk(newSong.id,{
+           include: db.User
+       });
+
+        res.json(song);
     }else{
         const errors = validatorErrors.array().map((error) => error.msg);
         res.json({errors});
