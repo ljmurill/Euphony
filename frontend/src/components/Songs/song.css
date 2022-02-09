@@ -19,9 +19,60 @@
 
 
     gap: 10px;
+
 }
 
 .input{
     width: 300px;
     height: 40px;
+}
+
+.file{
+    display: flex;
+    gap:10px;
+    justify-content: center;
+    align-items: center;
+    width:inherit;
+}
+
+#fileInput{
+    display: none;
+}
+
+.labelFileInput:hover{
+    background-color: white;
+    font-family: inherit;
+
+    /* border: 1px solid rgb(113, 62, 172); */
+    border-radius: 3px;
+    color: rgb(113, 62, 172);
+
+}
+
+.labelFileInput{
+    background-color: rgb(113, 62, 172);
+
+    font-family: inherit;
+
+    border-radius: 3px;
+    color: white;
+    padding: 5px;
+}
+
+.fileName{
+    color: white;
+}
+
+.fa-solid.fa-up-from-line.fa-3x{
+    color:white;
+}
+
+.songButton{
+    background-color: rgb(113, 62, 172);
+    font-size: inherit;
+    font-family: inherit;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    padding: 5px;
 }

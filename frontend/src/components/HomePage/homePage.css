@@ -30,6 +30,8 @@
     background-color: white;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
 }
 
 .songDetails{
@@ -64,7 +66,7 @@
     height: 40px;
     width: 300px;
     border-radius: 3px;
-    background-color: rgba(194, 193, 193, 0.5);
+    background-color: white;
     border:none;
     padding: 0%;
     outline: none;
@@ -73,11 +75,79 @@
 .searchSubmit{
     height: 40px;
     width: 50px;
-    background-color: rgba(194, 193, 193, 0.5);
+    background-color: white;
     border: none;
     border-radius: 3px;
 }
 
 .searchAndCreate{
     display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.search{
+    background-color: white;
+    height: 40px;
+    border-radius: 3px;
+}
+
+.fas.fa-search{
+    color:rgb(138, 136, 136);
+}
+
+.orText{
+    color: white;
+    font-weight: bolder;
+}
+
+.uploadButton{
+    background-color: white;
+    border: none;
+    font-family: inherit;
+
+    /* border: 1px solid rgb(113, 62, 172); */
+    border-radius: 3px;
+    color: rgb(113, 62, 172);
+    padding: 5px;
+    background-color: rgb(113, 62, 172);
+    border: none;
+    font-family: inherit;
+
+    border-radius: 3px;
+    color: white;
+}
+
+.uploadButton:hover{
+    background-color: white;
+    border: none;
+    font-family: inherit;
+
+    /* border: 1px solid rgb(113, 62, 172); */
+    border-radius: 3px;
+    color: rgb(113, 62, 172);
+    padding: 5px;
+}
+
+.dataResults{
+    background-color: white;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.dataResults::-webkit-scrollbar{
+    display: none;
+}
+
+.data{
+    padding-top: 10px;
+    padding-left: 10px;
+}
+.data:hover{
+    background-color: rgb(219, 215, 215);
 }

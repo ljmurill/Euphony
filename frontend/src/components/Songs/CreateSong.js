@@ -1,6 +1,6 @@
 import Navigation from "../Navigation";
 import { useDispatch, useSelector } from "react-redux";
-import './song.css'
+import '../Songs/song.css';
 import { useEffect, useState } from "react";
 import {addOneSong} from '../../store/songs';
 
@@ -12,7 +12,7 @@ function CreateSong({isLoaded}){
     const [imageUrl, setImageUrl] = useState('');
     const [errors, setErrors] = useState([]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         setErrors([])
 
@@ -23,17 +23,31 @@ function CreateSong({isLoaded}){
             imageUrl
         }
 
-        const promise = dispatch(addOneSong(newSong))
-        console.log(promise)
+        const songError =  await dispatch(addOneSong(newSong))
+            .catch(async (res) => {
+                console.log('RESS', res)
+                const data = await res.json();
+                if(data && data.errors) setErrors(data.errors);
+            })
 
-        if(promise){
-            promise
-                .catch(async (res) => {
-                    const data = await res.json();
-                    if(data && data.errors) setErrors(data.errors);
-                })
-        }
+            
+        // const song = await dispatch(addOneSong(newSong));
 
+        // if (song.errors){
+        //     setErrors(song.errors)
+        // }
+        // .catch(async (res) => {
+        //     const data = await res.json();
+        //     if(data && data.errors) setErrors(data.errors);
+        // })
+
+    }
+
+    const reset = () => {
+        setTitle('');
+        setSongLink('');
+        setImageUrl('');
+        setErrors([]);
     }
 
     return(
@@ -52,19 +66,24 @@ function CreateSong({isLoaded}){
                     className="input"
                     type='text'/>
                     <input
-                    onChange={(e) => setSongLink(e.target.value)}
-                    value={songLink}
-                    placeholder="Mp3 Url Link"
-                    className="input"
-                    type='file'/>
-                    <input
                     onChange={(e) => setImageUrl(e.target.value)}
                     value={imageUrl}
-                    placeholder="Image Url"
+                    placeholder="Image Url (Optional)"
                     className="input"
                     type='text'/>
-                    <button type="submit">Upload Song</button>
+                    <div className="file">
+                        <input
+                        id="fileInput"
+                        onChange={(e) => setSongLink(e.target.value)}
+                        value={songLink}
+                        placeholder="Mp3 Url Link"
+                        type='file'/>
+                        <label htmlFor='fileInput' className="labelFileInput">Choose file...</label>
+                        <span className='fileName' onChange={(e) => setSongLink(e.target.value)}>{songLink}</span>
+                    </div>
+                    <button type="submit" className="songButton">Upload Song</button>
                 </form>
+                    {/* <i className="fa-solid fa-up-from-line fa-3x"/> */}
             </div>
         </div>
     )

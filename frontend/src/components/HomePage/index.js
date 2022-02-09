@@ -15,6 +15,7 @@ function Home({isLoaded}){
     const sessionUser = useSelector(state => state.session.user);
     console.log(sessionUser)
 
+
     useEffect(() => {
         dispatch(allSongs());
     },[])
@@ -25,7 +26,7 @@ function Home({isLoaded}){
             <div className="homeHeader">
                 <Navigation isLoaded={isLoaded}/>
                 <SearchBar allSongs={songsArr}/>
-                
+
             </div>
 
             <h3 className="titleSongs">What's new on Euphony!</h3>

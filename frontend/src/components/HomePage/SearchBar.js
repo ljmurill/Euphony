@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 function SearchBar({allSongs}){
     const [search, setSearch] = useState([]);
+    // const [close, setClose] = useState(true);
     const sessionUser = useSelector(state => state.session.user)
 
     const handleSearch = (e) => {
@@ -24,31 +25,37 @@ function SearchBar({allSongs}){
 
 
 
+
     return(
         <div className="searchBar">
         <div className='searchAndCreate'>
+            <label className="search">
                 <input
                 type='text'
                 onChange={handleSearch}
                 placeholder="Search for songs"
                 className="searchInput"
-                />
+                >
+                </input>
                 <button type='button' className="searchSubmit"><i className="fas fa-search"></i></button>
-                <p>Or</p>
-                {sessionUser ? <button><Link to='/api/songs/create'>Upload Your Own</Link></button> : <button>Upload Your Own</button>}
+                {search.length !== 0 &&
+                <div className="dataResults">
+                    {search.map((song, i) => {
+                        return (
+                            <div className="data">
+                                <a className="songLink" key={i}>
+                                    {song.title}
+                                </a>
+                            </div>
+                        )
+                    })}
+                </div>
+                }
+            </label>
+                <p className="orText">or</p>
+                {sessionUser ? <Link to='/api/songs/create'><button className="uploadButton">Upload Your Own</button></Link> : <button className="uploadButton">Upload Your Own</button>}
 
         </div>
-            {search.length !== 0 &&
-            <div className="dataResults">
-                {search.map((song, i) => {
-                    return (
-                        <a className="songLink" key={i}>
-                            <p>{song.title}</p>
-                        </a>
-                    )
-                })}
-            </div>
-            }
         </div>
 
 

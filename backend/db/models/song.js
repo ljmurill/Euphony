@@ -14,11 +14,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     url: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     imageUrl: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: true
     }
   }, {});

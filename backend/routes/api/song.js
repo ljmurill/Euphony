@@ -1,6 +1,6 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
-const { check } = require('express-validator');
+const { check, validationResult } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const db = require('../../db/models');
@@ -27,17 +27,28 @@ router.get('/', asyncHandler(async(req, res) => {
     }
 }));
 
-router.post('/create', songValidation, asyncHandler(async(req, res) => {
+
+
+router.post('/create', songValidation, asyncHandler(async(req, res, next) => {
     const {userId, title, url, imageUrl} = req.body;
+    const User = await db.User.findByPk(userId);
+    const validatorErrors = validationResult(req);
 
-    const newSong = await db.Song.create({
-        userId,
-        title,
-        url,
-        imageUrl
-    });
+    if(validatorErrors.isEmpty()){
+        const newSong = await db.Song.create({
+            userId,
+            title,
+            url,
+            imageUrl
+        });
 
-    res.json(newSong);
+        newSong.User = User;
+        res.json({newSong});
+    }else{
+        const errors = validatorErrors.array().map((error) => error.msg);
+        res.json({errors});
+    }
+
 
 }));
 
