@@ -13,17 +13,40 @@ function SpecificSongPage({isLoaded}){
     const songs = JSON.parse(window.localStorage.getItem('Songs'));
     console.log('HELLO', songs)
     const theSong = songs.find(song => song.id === +songId);
-
+    const sessionUser = useSelector(state => state.session.user);
+    let icons;
+    if(sessionUser.id === theSong.User.id){
+        console.log('YELLOW');
+        icons = (
+            <div className="iconLiving">
+            <FontAwesomeIcon icon='pen-to-square' color="white"/>
+            <FontAwesomeIcon icon='trash-can' color="white" className="trashCan"/>
+            </div>
+        )
+    }
 
     return(
         <div className="songPageDiv">
             <Navigation isLoaded={isLoaded}/>
             <div className="songDetailsDiv">
-                <div>
-                    <h1><span className="theSongTitle">{theSong.title}</span></h1>
-                    <div className='theSongUsername'>{theSong.User.username}</div>
+                <div className="leftSide">
+                    <div>
+                        <h1><span className="theSongTitle">{theSong.title}</span></h1>
+                        <div className='theSongUsername'>{theSong.User.username}</div>
+                    </div>
+                    {/* <div>
+                        <FontAwesomeIcon icon='pen-to-square' color="white"/>
+                        <FontAwesomeIcon icon='trash-can' color="white" className="trashCan"/>
+                    </div> */}
                 </div>
-                <div><img className='specificSongImage' src={theSong.imageUrl ? theSong.imageUrl : defaultImage}/></div>
+                <div className="rightSide">
+                    <img className='specificSongImage' src={theSong.imageUrl ? theSong.imageUrl : defaultImage}/>
+                    {/* <div className="iconLiving">
+                    <FontAwesomeIcon icon='pen-to-square' color="white"/>
+                    <FontAwesomeIcon icon='trash-can' color="white" className="trashCan"/>
+                    </div> */}
+                    {icons}
+                </div>
             </div>
         </div>
     )
