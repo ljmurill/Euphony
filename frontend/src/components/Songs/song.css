@@ -1,10 +1,24 @@
 .createSong{
     background-color: rgb(8, 7, 7);
 }
+.editSong{
+    background-color: rgb(8, 7, 7);
+    border-radius: 3px;
+}
 
 .createSongDiv{
     width: inherit;
     height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.editSongDiv{
+    width: 500px;
+    height: 500px;
+    border-radius: 3px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -162,7 +176,7 @@
     color: white;
 }
 
-#editModal {
+/* #editModal {
     position: absolute;
     background-color:white;
     width: 300px;
@@ -172,4 +186,56 @@
     display: flex;
     justify-content: center;
     align-items: center;
+} */
+
+.deleteForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 400px;
+    background-color: rgb(8, 7, 7);
+    height: 400px;
+    justify-content: center;
+    border-radius: 3px;
+    align-items: center;
+}
+
+.confirmationDelete{
+    text-align: center;
+    color: white;
+    padding: 10px
+}
+
+.deleteFormButtons{
+    display: flex;
+    gap:10px;
+}
+
+.deleteCancelButton{
+    background-color: rgb(113, 62, 172);
+    border: none;
+    font-family: inherit;
+
+    /* border: 1px solid rgb(113, 62, 172); */
+    border-radius: 3px;
+    color: white;
+    padding: 5px;
+    width: 120px;
+    height: 40px;
+    font-size: larger;
+
+
+}
+
+.deleteCancelButton:hover{
+    background-color: white;
+    border: none;
+    font-family: inherit;
+
+    border-radius: 3px;
+    color: rgb(113, 62, 172);
+}
+
+.deleteFormSoundCloud{
+    color: rgb(113, 62, 172);
 }

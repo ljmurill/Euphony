@@ -29,10 +29,9 @@ const editSong = (song, songId) => {
     }
 }
 
-const deleteSong = (song, songId) => {
+const deleteSong = (songId) => {
     return{
         type: DELETE_SONG,
-        song,
         songId
     }
 }
@@ -81,14 +80,18 @@ export const editOneSong = (song, songId) => async(dispatch) => {
     return response;
 }
 
-export const removeSong = (song, songId) => async(dispatch) => {
+export const removeSong = (songId) => async(dispatch) => {
     const response =  await csrfFetch(`/api/songs/${songId}`, {
         method: 'DELETE',
     })
 
-    if (response.ok){
-        const deletedSong = await response.json();
+
+    const deletedSong = await response.json();
+    if(deletedSong.message = 'Success'){
+        dispatch(deleteSong(songId))
     }
+
+    return response;
 }
 
 const initialState = {songs: []};
@@ -114,6 +117,17 @@ const songsReducer = (state = initialState, action) => {
                 }});
 
             newState.songs[index] = {...action.song.specificSong};
+            return newState;
+        case DELETE_SONG:
+            newState = {...state};
+
+            let deleteIndex;
+            newState.songs.forEach((song, i) => {
+                    if (song.id === action.songId){
+                        deleteIndex = i;
+            }});
+    
+            if(newState.songs[deleteIndex]) delete newState.songs[deleteIndex];
             return newState;
         default:
             return state;

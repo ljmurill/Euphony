@@ -7,6 +7,7 @@ import {addOneSong} from '../../store/songs';
 import { useHistory, Redirect, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import EditFormModal from "./EditFormModal";
+import DeleteFormModal from "./DeleteFormModal/DeleteSong";
 
 function SpecificSongPage({isLoaded}){
     const defaultImage = 'https://preview.redd.it/e1l2mfuraia51.jpg?width=960&crop=smart&auto=webp&s=598397a1367b7a4a7c273d10a0298d6b848a1c94';
@@ -22,7 +23,7 @@ function SpecificSongPage({isLoaded}){
         icons = (
             <div className="iconLiving">
             <EditFormModal song ={theSong}/>
-            <FontAwesomeIcon icon='trash-can' color="white" className="trashCan"/>
+            <DeleteFormModal song ={theSong}/>
             </div>
         )
     }
