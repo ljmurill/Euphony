@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const GET_ALL_SONGS = 'songs/getAllSongs';
 const ADD_SONG = 'songs/addSong';
+const EDIT_SONG = 'songs/editSong';
 
 
 const getAllSongs = (songs) => {
@@ -18,6 +19,15 @@ const addSong = (song) => {
         song
     }
 }
+
+const editSong = (song, songId) => {
+    return{
+        type: EDIT_SONG,
+        song,
+        songId
+    }
+}
+
 
 export const allSongs = () => async(dispatch) => {
     const response = await csrfFetch('/api/songs');
@@ -46,6 +56,20 @@ export const addOneSong = (song) => async(dispatch)=>{
     return response;
 }
 
+export const editOneSong = (song, songId) => async(dispatch) => {
+    const response = await csrfFetch(`/api/songs/${songId}`, {
+        method: 'PUT',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(song)
+    })
+    if(response.ok){
+        const updatedSong = await response.json();
+        dispatch(editSong(updatedSong, songId))
+    }
+
+    return response;
+}
+
 const initialState = {songs: []};
 
 const songsReducer = (state = initialState, action) => {
@@ -56,10 +80,13 @@ const songsReducer = (state = initialState, action) => {
             newState.songs = [...action.allSongs];
             return newState;
         case ADD_SONG:
-
             newState = {...state};
             console.log(action.song)
             newState.songs = [...newState.songs, action.song];
+            return newState;
+        case EDIT_SONG:
+            newState = {...state};
+            newState.songs[action.songId] = {...action.song};
             return newState;
         default:
             return state;

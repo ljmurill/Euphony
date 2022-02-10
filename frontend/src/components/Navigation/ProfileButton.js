@@ -28,6 +28,7 @@ function ProfileButton({user}){
 
     const logout = (e) => {
         e.preventDefault();
+        window.localStorage.removeItem('Songs');
         dispatch(sessionActions.logout());
         history.push('/');
 

@@ -4,6 +4,9 @@ import { allSongs } from "../../store/songs";
 import '../HomePage/homePage.css'
 import { useEffect } from "react";
 import SearchBar from "./SearchBar";
+import { Link } from "react-router-dom";
+
+
 
 
 // const defaultImage = "../../../images/defaultCover.jpg";
@@ -13,13 +16,15 @@ function Home({isLoaded}){
     const dispatch = useDispatch();
     const songsArr = useSelector(state => state.songs.songs);
     const sessionUser = useSelector(state => state.session.user);
-    console.log(sessionUser)
 
 
     useEffect(() => {
         dispatch(allSongs());
     },[])
 
+    useEffect(() => {
+        window.localStorage.setItem('Songs', JSON.stringify(songsArr));
+    }, [sessionUser]);
 
     return(
         <>
@@ -31,17 +36,42 @@ function Home({isLoaded}){
 
             <h3 className="titleSongs">What's new on Euphony!</h3>
             <div className="songs">
-                {songsArr && songsArr.map((song, id) => {
-                    return (<div key={id} className="songBlock">
-                        <div className="imageDiv">
-                            {song.imageUrl ? <img src={song.imageUrl} className='songImage'/>: <img src={defaultImage} className='songImage'/>}
-                        </div>
+                {sessionUser && songsArr && songsArr.map((song, id) => {
 
-                            <p className="songDetails title">{song.title}</p>
-                            <p className="songDetails username">{song.User.username}</p>
-                    </div>)
+                    return (id < 20 &&
+                        <Link to={`/api/songs/${song.id}`} key={id} className='linkSong'>
+                        <div className="songBlock">
+                            <div className="imageDiv">
+                                {song.imageUrl ? <img src={song.imageUrl} className='songImage'/>: <img src={defaultImage} className='songImage'/>}
+                            </div>
+                                <div className="optionsSongs">
+                                    <div>
+                                    <p className="songDetails title">{song.title}</p>
+                                    <p className="songDetails username">{song.User.username}</p>
+                                    </div>
+                                </div>
+                        </div></Link>
+                    )
 
                 })}
+                {!sessionUser && songsArr && songsArr.map((song, id) => {
+
+                    return (id < 20 &&
+
+                        <div className="songBlock" key={id}>
+                            <div className="imageDiv">
+                                {song.imageUrl ? <img src={song.imageUrl} className='songImage'/>: <img src={defaultImage} className='songImage'/>}
+                            </div>
+                                <div className="optionsSongs">
+                                    <div>
+                                    <p className="songDetails title">{song.title}</p>
+                                    <p className="songDetails username">{song.User.username}</p>
+                                    </div>
+                                </div>
+                        </div>
+                    )
+
+                })};
             </div>
         </>
 
