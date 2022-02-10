@@ -78,4 +78,14 @@ router.put('/:songId(\\d+)', songValidation, asyncHandler(async(req, res, next) 
     }
 }));
 
+
+router.delete('/:songId(\\d+)', asyncHandler(async(req, res, next) => {
+    const songId = req.params.songId;
+    const song = await db.Song.findByPk(songId);
+
+    if(song){
+        await song.destroy();
+        res.json({message: 'Success'});
+    }
+}));
 module.exports = router;
