@@ -24,7 +24,7 @@ function Home({isLoaded}){
 
     useEffect(() => {
         window.localStorage.setItem('Songs', JSON.stringify(songsArr));
-    }, [sessionUser]);
+    }, [sessionUser, songsArr]);
 
     return(
         <>

@@ -16,8 +16,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-
     gap: 10px;
 
 }
@@ -123,7 +121,8 @@
     height: 400px;
     display: flex;
     justify-content: space-between;
-    margin: 15px 15px;
+    padding: 15px 15px;
+
 }
 
 .specificSongImage{
@@ -137,4 +136,24 @@
 
 .theSongUsername{
     color: white;
+}
+
+.leftSide{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.rightSide{
+    display: flex;
+    flex-direction: column
+}
+
+.iconLiving{
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 10px;
+}
+
+.trashCan{
+    margin-right: 12px;
 }
