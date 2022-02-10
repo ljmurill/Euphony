@@ -6,20 +6,22 @@ import { useEffect, useState } from "react";
 import {addOneSong} from '../../store/songs';
 import { useHistory, Redirect, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import EditFormModal from "./EditFormModal";
 
 function SpecificSongPage({isLoaded}){
     const defaultImage = 'https://preview.redd.it/e1l2mfuraia51.jpg?width=960&crop=smart&auto=webp&s=598397a1367b7a4a7c273d10a0298d6b848a1c94';
     const {songId} = useParams();
-    const songs = JSON.parse(window.localStorage.getItem('Songs'));
+    // const songs = JSON.parse(window.localStorage.getItem('Songs'));
+    const songs = useSelector(state => state.songs.songs);
     console.log('HELLO', songs)
     const theSong = songs.find(song => song.id === +songId);
     const sessionUser = useSelector(state => state.session.user);
+
     let icons;
     if(sessionUser.id === theSong.User.id){
-        console.log('YELLOW');
         icons = (
             <div className="iconLiving">
-            <FontAwesomeIcon icon='pen-to-square' color="white"/>
+            <EditFormModal song ={theSong}/>
             <FontAwesomeIcon icon='trash-can' color="white" className="trashCan"/>
             </div>
         )
@@ -34,17 +36,9 @@ function SpecificSongPage({isLoaded}){
                         <h1><span className="theSongTitle">{theSong.title}</span></h1>
                         <div className='theSongUsername'>{theSong.User.username}</div>
                     </div>
-                    {/* <div>
-                        <FontAwesomeIcon icon='pen-to-square' color="white"/>
-                        <FontAwesomeIcon icon='trash-can' color="white" className="trashCan"/>
-                    </div> */}
                 </div>
                 <div className="rightSide">
                     <img className='specificSongImage' src={theSong.imageUrl ? theSong.imageUrl : defaultImage}/>
-                    {/* <div className="iconLiving">
-                    <FontAwesomeIcon icon='pen-to-square' color="white"/>
-                    <FontAwesomeIcon icon='trash-can' color="white" className="trashCan"/>
-                    </div> */}
                     {icons}
                 </div>
             </div>

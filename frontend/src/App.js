@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-
+import { allSongs } from "./store/songs";
 
 import { restoreUser } from './store/session';
 
@@ -15,6 +15,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    dispatch(allSongs())
     dispatch(restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch])
 
