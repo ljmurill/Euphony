@@ -69,7 +69,7 @@ function Home({isLoaded}){
                         </div>
                     )
 
-                })};
+                })}
             </div>
         </>
 
