@@ -67,7 +67,7 @@ function SignupForm() {
                 />
 
                 <input
-                    type='text'
+                    type='password'
                     className='signupInput'
                     placeholder='Password'
                     name='password'
@@ -77,7 +77,7 @@ function SignupForm() {
                 />
 
                 <input
-                    type='text'
+                    type='password'
                     className='signupInput'
                     placeholder='Confirm Password'
                     name='confirmPassword'

@@ -14,7 +14,7 @@ function LoginForm(){
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([])
-        
+
         return dispatch(sessionActions.login({credential, password}))
             .catch(async(res) => {
                 const data = await res.json();
@@ -40,7 +40,7 @@ function LoginForm(){
                     required
                 />
                 <input
-                    type='text'
+                    type='password'
                     className='passwordInput'
                     placeholder='Password'
                     value={password}

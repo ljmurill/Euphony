@@ -1,6 +1,6 @@
 
 import { useDispatch, useSelector } from "react-redux";
-import { allSongs } from "../../store/songs";
+
 import '../HomePage/homePage.css'
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -8,9 +8,8 @@ import { Link } from "react-router-dom";
 
 function SearchBar({allSongs}){
     const [search, setSearch] = useState([]);
-    // const [close, setClose] = useState(true);
-    const sessionUser = useSelector(state => state.session.user)
 
+    const sessionUser = useSelector(state => state.session.user)
     const handleSearch = (e) => {
         const searchWord = e.target.value;
         const newSearch = allSongs.filter((song) => {
@@ -22,8 +21,6 @@ function SearchBar({allSongs}){
             setSearch(newSearch)
         }
     }
-
-
 
 
     return(
@@ -40,12 +37,22 @@ function SearchBar({allSongs}){
                 <button type='button' className="searchSubmit"><i className="fas fa-search"></i></button>
                 {search.length !== 0 &&
                 <div className="dataResults">
-                    {search.map((song, i) => {
+
+                    {sessionUser && search.map((song, i) => {
                         return (
                             <div className="data" key={i}>
                                 <Link to = {`api/songs/${song.id}`} className="songLink">
                                     {song.title}
                                 </Link>
+                            </div>
+                        )
+                    })}
+                    {!sessionUser && search.map((song, i) => {
+                        return (
+                            <div className="data" key={i}>
+                                <p to = {`api/songs/${song.id}`} className="songLink">
+                                    {song.title}
+                                </p>
                             </div>
                         )
                     })}
