@@ -157,3 +157,19 @@
 .trashCan{
     margin-right: 12px;
 }
+
+.warning{
+    color: white;
+}
+
+#editModal {
+    position: absolute;
+    background-color:white;
+    width: 300px;
+    height: fit-content;
+    min-height: 350px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

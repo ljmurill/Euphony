@@ -68,17 +68,13 @@ router.post('/create', songValidation, asyncHandler(async(req, res, next) => {
 
 router.put('/:songId(\\d+)', songValidation, asyncHandler(async(req, res, next) => {
     const {userId, title, url, imageUrl} = req.body;
-    const specificSong = await db.Song.findByPk(req.params.id, {
+    const specificSong = await db.Song.findByPk(req.params.songId, {
         include: db.User
     });
-
+    console.log('YELLow', specificSong)
     if(specificSong){
         await specificSong.update({userId, title, url, imageUrl});
         res.json({ specificSong })
-    }else{
-        const err = new Error();
-        err.status(404);
-        next(404);
     }
 }));
 

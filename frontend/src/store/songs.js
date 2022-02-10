@@ -57,11 +57,13 @@ export const addOneSong = (song) => async(dispatch)=>{
 }
 
 export const editOneSong = (song, songId) => async(dispatch) => {
+   
     const response = await csrfFetch(`/api/songs/${songId}`, {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(song)
     })
+
     if(response.ok){
         const updatedSong = await response.json();
         dispatch(editSong(updatedSong, songId))
@@ -86,6 +88,8 @@ const songsReducer = (state = initialState, action) => {
             return newState;
         case EDIT_SONG:
             newState = {...state};
+            console.log('YELLOW', action.song);
+            console.log('HELLO BOZO', newState.songs[action.songId]);
             newState.songs[action.songId] = {...action.song};
             return newState;
         default:

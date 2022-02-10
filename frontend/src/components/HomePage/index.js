@@ -1,6 +1,6 @@
 import Navigation from "../Navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { allSongs } from "../../store/songs";
+
 import '../HomePage/homePage.css'
 import { useEffect } from "react";
 import SearchBar from "./SearchBar";
@@ -13,18 +13,15 @@ import { Link } from "react-router-dom";
 const defaultImage = "https://preview.redd.it/e1l2mfuraia51.jpg?width=960&crop=smart&auto=webp&s=598397a1367b7a4a7c273d10a0298d6b848a1c94";
 
 function Home({isLoaded}){
-    const dispatch = useDispatch();
     const songsArr = useSelector(state => state.songs.songs);
     const sessionUser = useSelector(state => state.session.user);
 
 
-    useEffect(() => {
-        dispatch(allSongs());
-    },[])
 
-    useEffect(() => {
-        window.localStorage.setItem('Songs', JSON.stringify(songsArr));
-    }, [sessionUser, songsArr]);
+
+    // useEffect(() => {
+    //     window.localStorage.setItem('Songs', JSON.stringify(songsArr));
+    // }, [sessionUser, songsArr]);
 
     return(
         <>
