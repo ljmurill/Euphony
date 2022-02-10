@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 
+
 import { restoreUser } from './store/session';
-import SignupFormPage from './components/SignupFormPage';
-import Navigation from './components/Navigation';
+
 import Home from './components/HomePage';
 import CreateSong from './components/Songs/CreateSong';
-
+import SpecificSongPage from './components/Songs/SongSpecificPage';
 
 
 function App() {
@@ -29,10 +29,10 @@ function App() {
           <Route path="/api/songs/create">
             <CreateSong isLoaded={isLoaded}/>
           </Route>
-          <Route path="/api/users/:userId">
-
-          </Route>
           <Route path="/api/songs/:songId">
+              <SpecificSongPage isLoaded ={isLoaded}/>
+          </Route>
+          <Route path="/api/users/:userId">
 
           </Route>
           <Route>

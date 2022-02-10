@@ -4,6 +4,8 @@ import '../Songs/song.css';
 import { useEffect, useState } from "react";
 import {addOneSong} from '../../store/songs';
 import { useHistory, Redirect } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 function CreateSong({isLoaded}){
     const dispatch = useDispatch();
@@ -50,7 +52,7 @@ function CreateSong({isLoaded}){
             <div className="createSongDiv">
                 <div className="formHeader">
                 <h1 className="formTitle">Share your Music</h1>
-                <i className="fa-solid fa-boombox"></i>
+                <FontAwesomeIcon icon="headphones" className="headphones" size="2x"/>
                 </div>
                 {errors.length > 0 ? <div className="errorsSection">
                     {errors.map((error, i) => {

@@ -42,10 +42,10 @@ function SearchBar({allSongs}){
                 <div className="dataResults">
                     {search.map((song, i) => {
                         return (
-                            <div className="data">
-                                <a className="songLink" key={i}>
+                            <div className="data" key={i}>
+                                <Link to = {`api/songs/${song.id}`} className="songLink">
                                     {song.title}
-                                </a>
+                                </Link>
                             </div>
                         )
                     })}

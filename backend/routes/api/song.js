@@ -1,7 +1,7 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check, validationResult } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+const { handleValidationErrors, requireAuth } = require('../../utils/validation');
 
 const db = require('../../db/models');
 
@@ -20,7 +20,6 @@ const songValidation = [
 router.get('/', asyncHandler(async(req, res) => {
     const song = await db.Song.findAll({
         include: [db.User],
-        limit: 20,
         order: [['updatedAt', 'DESC']]
     });
 
@@ -54,6 +53,33 @@ router.post('/create', songValidation, asyncHandler(async(req, res, next) => {
     }
 
 
+}));
+
+// router.get('/:songId(\\d+)', asyncHandler(async(req, res, next) => {
+//     const song = await db.Song.findByPk(req.params.id, {
+//         include: db.User,
+//     })
+
+//     if(song){
+//         console.log(song);
+//         res.json(song)
+//     }
+// }));
+
+router.put('/:songId(\\d+)', songValidation, asyncHandler(async(req, res, next) => {
+    const {userId, title, url, imageUrl} = req.body;
+    const specificSong = await db.Song.findByPk(req.params.id, {
+        include: db.User
+    });
+
+    if(specificSong){
+        await specificSong.update({userId, title, url, imageUrl});
+        res.json({ specificSong })
+    }else{
+        const err = new Error();
+        err.status(404);
+        next(404);
+    }
 }));
 
 module.exports = router;

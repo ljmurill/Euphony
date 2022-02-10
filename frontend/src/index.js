@@ -12,6 +12,13 @@ import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
 
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faCheckSquare, faHeadphones, faEllipsis} from '@fortawesome/free-solid-svg-icons'
+
+library.add(fab, faCheckSquare, faHeadphones, faEllipsis)
+
 const store = configureStore();
 
 if (process.env.NODE_ENV !== 'production') {
@@ -25,11 +32,13 @@ if (process.env.NODE_ENV !== 'production') {
 function Root() {
   return (
     <Provider store= {store}>
+
       <ModalProvider>
         <BrowserRouter>
           <App />
         </BrowserRouter>
       </ModalProvider>
+
     </Provider>
   );
 }

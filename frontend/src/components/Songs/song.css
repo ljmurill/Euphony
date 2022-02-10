@@ -103,10 +103,38 @@
     color: white;
 }
 
-.fa-solid.fa-boombox{
+.formHeader{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.headphones{
+    color: white;
+    size: 200px;
+}
+
+.songPageDiv{
+    background-color: rgb(8, 7, 7);
+
+}
+
+.songDetailsDiv{
+    height: 400px;
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 15px;
+}
+
+.specificSongImage{
+    width:360px;
+    height: 360px;
+}
+
+.theSongTitle{
     color: white;
 }
 
-.formHeader{
-    display: flex;
+.theSongUsername{
+    color: white;
 }
