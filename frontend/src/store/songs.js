@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const GET_ALL_SONGS = 'songs/getAllSongs';
 const ADD_SONG = 'songs/addSong';
 const EDIT_SONG = 'songs/editSong';
+const DELETE_SONG = 'songs/deleteSong';
 
 
 const getAllSongs = (songs) => {
@@ -23,6 +24,14 @@ const addSong = (song) => {
 const editSong = (song, songId) => {
     return{
         type: EDIT_SONG,
+        song,
+        songId
+    }
+}
+
+const deleteSong = (song, songId) => {
+    return{
+        type: DELETE_SONG,
         song,
         songId
     }
@@ -57,7 +66,7 @@ export const addOneSong = (song) => async(dispatch)=>{
 }
 
 export const editOneSong = (song, songId) => async(dispatch) => {
-   
+
     const response = await csrfFetch(`/api/songs/${songId}`, {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },
@@ -70,6 +79,16 @@ export const editOneSong = (song, songId) => async(dispatch) => {
     }
 
     return response;
+}
+
+export const removeSong = (song, songId) => async(dispatch) => {
+    const response =  await csrfFetch(`/api/songs/${songId}`, {
+        method: 'DELETE',
+    })
+
+    if (response.ok){
+        const deletedSong = await response.json();
+    }
 }
 
 const initialState = {songs: []};
@@ -88,9 +107,13 @@ const songsReducer = (state = initialState, action) => {
             return newState;
         case EDIT_SONG:
             newState = {...state};
-            console.log('YELLOW', action.song);
-            console.log('HELLO BOZO', newState.songs[action.songId]);
-            newState.songs[action.songId] = {...action.song};
+            let index;
+            newState.songs.forEach((song, i) => {
+                    if (song.id === action.song.specificSong.id){
+                        index = i;
+                }});
+
+            newState.songs[index] = {...action.song.specificSong};
             return newState;
         default:
             return state;

@@ -8,8 +8,7 @@ import { useHistory, Redirect } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
-function EditSong({theSong}){
-
+function EditSong({theSong, setShowModal}){
     // theSong.url.split('\\')[2]
     const history = useHistory();
     const dispatch = useDispatch();
@@ -50,6 +49,8 @@ function EditSong({theSong}){
 
         if(songError && songError.status === 200){
            console.log('hello');
+           setShowModal(false);
+           history.push(`/api/songs/${theSong.id}`)
         }
 
     }

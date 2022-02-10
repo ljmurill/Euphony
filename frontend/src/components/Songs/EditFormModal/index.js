@@ -22,7 +22,7 @@ function EditFormModal({song}) {
     }}/>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditSong theSong={song}/>
+          <EditSong theSong={song} setShowModal ={setShowModal}/>
         </Modal>
       )}
     </>
