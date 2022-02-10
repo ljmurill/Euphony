@@ -14,10 +14,10 @@ import * as sessionActions from './store/session';
 
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fab, faSoundcloud} from '@fortawesome/free-brands-svg-icons'
 import { faCheckSquare, faHeadphones, faEllipsis, faPenToSquare, faTrashCan} from '@fortawesome/free-solid-svg-icons'
 
-library.add(fab, faCheckSquare, faHeadphones, faEllipsis, faPenToSquare, faTrashCan)
+library.add(fab, faCheckSquare, faHeadphones, faEllipsis, faPenToSquare, faTrashCan, faSoundcloud)
 
 const store = configureStore();
 

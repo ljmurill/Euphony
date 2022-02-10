@@ -58,10 +58,10 @@ function EditSong({theSong, setShowModal}){
 
 
     return(
-        <div className="createSong">
-            <div className="createSongDiv">
+        <div className="editSong">
+            <div className="editSongDiv">
                 <div className="formHeader">
-                <h1 className="formTitle">Share your Music</h1>
+                <h2 className="formTitle">Always Improving</h2>
                 <FontAwesomeIcon icon="headphones" className="headphones" size="2x"/>
                 </div>
                 {errors.length > 0 ? <div className="errorsSection">
