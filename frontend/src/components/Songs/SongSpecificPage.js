@@ -9,6 +9,7 @@ import EditFormModal from "./EditFormModal";
 import DeleteFormModal from "./DeleteFormModal/DeleteSong";
 import {updateOneComment} from '../../store/comments';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ReactAudioPlayer from 'react-audio-player';
 
 function SpecificSongPage({isLoaded}){
     const defaultImage = 'https://preview.redd.it/e1l2mfuraia51.jpg?width=960&crop=smart&auto=webp&s=598397a1367b7a4a7c273d10a0298d6b848a1c94';
@@ -24,6 +25,7 @@ function SpecificSongPage({isLoaded}){
     const theSong = songs.find(song => song.id === +songId);
     const sessionUser = useSelector(state => state.session.user);
     const commentsArr = useSelector(state => state.comments);
+    console.log(theSong.url.split('\\')[2])
 
     useEffect(() =>{
         dispatch(allComments(+songId))
@@ -96,6 +98,14 @@ function SpecificSongPage({isLoaded}){
                 <div className="leftSide">
                     <div className="playSide">
                         <FontAwesomeIcon icon="circle-play" size="4x" className="play" />
+                        {/* <audio controls src={`${theSong.url}`} type='audio/mpeg'>
+
+                        </audio> */}
+                        <ReactAudioPlayer
+                            src={`${theSong.url.split('\\')[2]}`}
+                            autoPlay
+                            controls
+                            />
                         <div>
                             <h1 className='h1Song'><span className="theSongTitle">{theSong.title}</span></h1>
                             <div className='theSongUsername'>{theSong.User.username}</div>
