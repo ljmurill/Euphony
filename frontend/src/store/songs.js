@@ -115,7 +115,7 @@ const songsReducer = (state = initialState, action) => {
                     if (song.id === action.song.specificSong.id){
                         index = i;
                 }});
-
+            newState.songs = [...newState.songs];
             newState.songs[index] = {...action.song.specificSong};
             return newState;
         case DELETE_SONG:

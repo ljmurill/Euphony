@@ -286,3 +286,22 @@
     background-color: rgb(226, 223, 223);
 
 }
+
+.playSide{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.play{
+    color: rgb(113, 62, 172);
+}
+
+.h1Song{
+    margin:0;
+}
+
+.hidden{
+    display: none;
+}

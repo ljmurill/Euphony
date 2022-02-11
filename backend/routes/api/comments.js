@@ -14,7 +14,7 @@ const commentValidation = [
     handleValidationErrors
 ]
 
-router.get('/:songId(\\d+)/comments', asyncHandler(async(req, res) => {
+router.get('/:songId(\\d+)/comments', asyncHandler(async(req, res, next) => {
     const songId = req.params.songId;
     const comments = await db.Comment.findAll({
         where:{
@@ -26,6 +26,10 @@ router.get('/:songId(\\d+)/comments', asyncHandler(async(req, res) => {
 
     if(comments){
         res.json(comments);
+    }else {
+        const error = new Error()
+        error.status = 404
+        next(error)
     }
 
 }))
@@ -67,6 +71,17 @@ router.put('/:songId(\\d+)/comments/:commentId(\\d+)', commentValidation, asyncH
     if(comment){
         await comment.update({userId, songId, body})
         res.json(comment)
+    }
+}));
+
+
+router.delete('/:songId(\\d+)/comments/:commentId(\\d+)', asyncHandler(async(req,res,next) => {
+    const commentId = req.params.commentId;
+    const comment = await db.Comment.findByPk(commentId);
+
+    if (comment){
+        await comment.destroy();
+        res.json({message: 'Success'});
     }
 }));
 

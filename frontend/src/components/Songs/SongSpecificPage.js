@@ -8,6 +8,7 @@ import CommentDeleteEdit from "./CommentDeleteEdit/CommentDeleteEdit";
 import EditFormModal from "./EditFormModal";
 import DeleteFormModal from "./DeleteFormModal/DeleteSong";
 import {updateOneComment} from '../../store/comments';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function SpecificSongPage({isLoaded}){
     const defaultImage = 'https://preview.redd.it/e1l2mfuraia51.jpg?width=960&crop=smart&auto=webp&s=598397a1367b7a4a7c273d10a0298d6b848a1c94';
@@ -15,6 +16,7 @@ function SpecificSongPage({isLoaded}){
     const dispatch = useDispatch();
     const history = useHistory();
     const [edit, setEdit] = useState(false);
+    // const [queueDelete, setQueueDelete] = useState(false);
     const [comment, setComment] = useState('');
     const [errors, setErrors] = useState([]);
     const [commentId, setCommentId] = useState('');
@@ -61,6 +63,8 @@ function SpecificSongPage({isLoaded}){
                 })
 
             if(updateError && updateError.status === 200){
+                const commentDiv = document.querySelector(`#comment${commentId}`);
+                commentDiv.classList.remove('hidden');
                 setCommentId('');
                 setEdit(false)
                 setComment('');
@@ -90,9 +94,12 @@ function SpecificSongPage({isLoaded}){
             <Navigation isLoaded={isLoaded}/>
             <div className="songDetailsDiv">
                 <div className="leftSide">
-                    <div>
-                        <h1><span className="theSongTitle">{theSong.title}</span></h1>
-                        <div className='theSongUsername'>{theSong.User.username}</div>
+                    <div className="playSide">
+                        <FontAwesomeIcon icon="circle-play" size="4x" className="play" />
+                        <div>
+                            <h1 className='h1Song'><span className="theSongTitle">{theSong.title}</span></h1>
+                            <div className='theSongUsername'>{theSong.User.username}</div>
+                        </div>
                     </div>
                 </div>
                 <div className="rightSide">
@@ -124,7 +131,7 @@ function SpecificSongPage({isLoaded}){
                 {commentsArr && commentsArr.comments.map((comment1, i)=>{
                     return (
                         <div key={i} id={`comment${comment1.id}`}>
-                            <CommentDeleteEdit setCommentId={setCommentId} setEdit ={setEdit} comment = {comment1} setComment ={setComment}/>
+                            <CommentDeleteEdit songId = {theSong.id} setCommentId={setCommentId} setEdit ={setEdit} comment = {comment1} setComment ={setComment}/>
                         </div>
                     )
                 })}

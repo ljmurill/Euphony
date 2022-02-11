@@ -2,9 +2,10 @@ import { csrfFetch } from "./csrf";
 
 const GET_ALL_COMMENTS = 'comments/getAllComments';
 const ADD_COMMENT = 'comments/addComment';
-const UPDATE_COMMENT = 'comments/updateComment'
+const UPDATE_COMMENT = 'comments/updateComment';
+const DELETE_COMMENT = 'comments/deleteComment';
 
-const getAllComments = (comments, songId)=>{
+const getAllComments = (comments)=>{
     return {
         type: GET_ALL_COMMENTS,
         comments
@@ -27,10 +28,18 @@ const updateComment = (comment, commentId) => {
     }
 }
 
+const deleteComment = (comment, commentId) => {
+    return{
+        type: DELETE_COMMENT,
+        comment,
+        commentId
+    }
+}
+
 export const allComments = (songId) => async(dispatch) => {
     const response = await csrfFetch(`/api/songs/${songId}/comments`);
     const allComments = await response.json();
-    dispatch(getAllComments(allComments, songId));
+    dispatch(getAllComments(allComments));
     return response;
 }
 
@@ -63,6 +72,18 @@ export const updateOneComment = (comment, commentId, songId) => async(dispatch) 
     return response;
 }
 
+export const deleteOneComment = (comment, commentId, songId) => async(dispatch) => {
+    const response = await csrfFetch(`/api/songs/${songId}/comments/${commentId}`, {
+        method: 'DELETE',
+    })
+
+    const deletedComment = await response.json();
+    if(deletedComment.message === 'Success'){
+        dispatch(deleteComment(comment, commentId));
+    }
+    return response;
+}
+
 const initialState = {comments: []}
 
 const commentReducer = (state = initialState, action) => {
@@ -87,7 +108,22 @@ const commentReducer = (state = initialState, action) => {
             })
             console.log('HELLO', action.comment);
             console.log('NEWW', newState.comments[index]);
-            newState.comments[index] = {...action.comment};
+            const newComments = [...newState.comments];
+            newComments[index] = {...action.comment};
+            // newComments.splice(index, 1);
+            // const newestComments = [{...action.comment}, ...newComments]
+            newState.comments = newComments;
+            return newState;
+        case DELETE_COMMENT:
+            newState = {...state};
+            let deleteIndex;
+            newState.comments.forEach((comment, i) => {
+                if(comment.id === action.commentId){
+                    deleteIndex = i;
+                }
+            })
+
+            if(newState.comments[deleteIndex]) delete newState.comments[deleteIndex];
             return newState;
         default:
             return state
