@@ -23,6 +23,7 @@ const updateComment = (comment, commentId) => {
         type:UPDATE_COMMENT,
         comment,
         commentId
+
     }
 }
 
@@ -78,11 +79,14 @@ const commentReducer = (state = initialState, action) => {
         case UPDATE_COMMENT:
             newState = {...state};
             let index;
+
             newState.comments.forEach((comment, i) => {
                 if(comment.id === action.commentId){
                     index = i;
                 }
             })
+            console.log('HELLO', action.comment);
+            console.log('NEWW', newState.comments[index]);
             newState.comments[index] = {...action.comment};
             return newState;
         default:

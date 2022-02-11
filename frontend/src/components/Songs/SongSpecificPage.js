@@ -7,14 +7,17 @@ import { useHistory, Redirect, useParams } from "react-router-dom";
 import CommentDeleteEdit from "./CommentDeleteEdit/CommentDeleteEdit";
 import EditFormModal from "./EditFormModal";
 import DeleteFormModal from "./DeleteFormModal/DeleteSong";
+import {updateOneComment} from '../../store/comments';
 
 function SpecificSongPage({isLoaded}){
     const defaultImage = 'https://preview.redd.it/e1l2mfuraia51.jpg?width=960&crop=smart&auto=webp&s=598397a1367b7a4a7c273d10a0298d6b848a1c94';
     const {songId} = useParams();
     const dispatch = useDispatch();
     const history = useHistory();
+    const [edit, setEdit] = useState(false);
     const [comment, setComment] = useState('');
     const [errors, setErrors] = useState([]);
+    const [commentId, setCommentId] = useState('');
     const songs = useSelector(state => state.songs.songs);
     const theSong = songs.find(song => song.id === +songId);
     const sessionUser = useSelector(state => state.session.user);
@@ -22,27 +25,48 @@ function SpecificSongPage({isLoaded}){
 
     useEffect(() =>{
         dispatch(allComments(+songId))
-    }, [])
+    }, [dispatch])
 
     const handleSubmit = async(e) =>{
         e.preventDefault();
         setErrors([]);
+        if(!edit){
+            const newComment = {
+                userId: sessionUser.id,
+                songId,
+                body: comment
+            }
+            const commentError =  await dispatch(postComment(newComment, theSong.id))
+                .catch(async (res) => {
+                    const data = await res.json();
+                    if(data && data.errors) setErrors(data.errors);
+                })
 
-        const newComment = {
-            userId: sessionUser.id,
-            songId,
-            body: comment
-        }
-        const commentError =  await dispatch(postComment(newComment, theSong.id))
-            .catch(async (res) => {
-                const data = await res.json();
-                if(data && data.errors) setErrors(data.errors);
-            })
+            if(commentError && commentError.status === 200){
+                setComment('');
+                setErrors([]);
+                history.push(`/api/songs/${theSong.id}`)
+            }
+        }else{
+            const updatedComment = {
+                userId: sessionUser.id,
+                songId,
+                body: comment
+            }
 
-        if(commentError && commentError.status === 200){
-            setComment('');
-            setErrors([]);
-            history.push(`/api/songs/${theSong.id}`)
+            const updateError = await dispatch(updateOneComment(updatedComment, commentId, theSong.id))
+                .catch(async (res) => {
+                    const data = await res.json();
+                    if(data && data.errors) setErrors(data.errors);
+                })
+
+            if(updateError && updateError.status === 200){
+                setCommentId('');
+                setEdit(false)
+                setComment('');
+                setErrors([]);
+                history.push(`/api/songs/${theSong.id}`)
+            }
         }
 
     }
@@ -97,10 +121,10 @@ function SpecificSongPage({isLoaded}){
                     })}
                 </div>: ''}
             <div className="allComments">
-                {commentsArr && commentsArr.comments.map((comment, i)=>{
+                {commentsArr && commentsArr.comments.map((comment1, i)=>{
                     return (
-                        <div key={i}>
-                            <CommentDeleteEdit comment = {comment}/>
+                        <div key={i} id={`comment${comment1.id}`}>
+                            <CommentDeleteEdit setCommentId={setCommentId} setEdit ={setEdit} comment = {comment1} setComment ={setComment}/>
                         </div>
                     )
                 })}
