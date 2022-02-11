@@ -53,7 +53,7 @@ export const addOneSong = (song) => async(dispatch)=>{
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(song)
     });
-    console.log('RESPONSE')
+
     if(response.ok){
         const newSong = await response.json();
 
@@ -126,7 +126,7 @@ const songsReducer = (state = initialState, action) => {
                     if (song.id === action.songId){
                         deleteIndex = i;
             }});
-    
+
             if(newState.songs[deleteIndex]) delete newState.songs[deleteIndex];
             return newState;
         default:

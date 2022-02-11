@@ -11,7 +11,7 @@ function DeleteFormModal({song}) {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
-console.log('HEADSS', song);
+
   const handleDelete = async(e) => {
 
     e.preventDefault();

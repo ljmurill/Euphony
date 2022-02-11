@@ -1,34 +1,67 @@
 import Navigation from "../Navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { allSongs, getSpecificSong } from "../../store/songs";
+import { allComments, postComment } from "../../store/comments";
 import '../Songs/song.css';
 import { useEffect, useState } from "react";
-import {addOneSong} from '../../store/songs';
 import { useHistory, Redirect, useParams } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import CommentDeleteEdit from "./CommentDeleteEdit/CommentDeleteEdit";
 import EditFormModal from "./EditFormModal";
 import DeleteFormModal from "./DeleteFormModal/DeleteSong";
 
 function SpecificSongPage({isLoaded}){
     const defaultImage = 'https://preview.redd.it/e1l2mfuraia51.jpg?width=960&crop=smart&auto=webp&s=598397a1367b7a4a7c273d10a0298d6b848a1c94';
     const {songId} = useParams();
-    // const songs = JSON.parse(window.localStorage.getItem('Songs'));
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const [comment, setComment] = useState('');
+    const [errors, setErrors] = useState([]);
     const songs = useSelector(state => state.songs.songs);
-    console.log('HELLO', songs)
     const theSong = songs.find(song => song.id === +songId);
     const sessionUser = useSelector(state => state.session.user);
+    const commentsArr = useSelector(state => state.comments);
 
-    let icons;
+    useEffect(() =>{
+        dispatch(allComments(+songId))
+    }, [])
+
+    const handleSubmit = async(e) =>{
+        e.preventDefault();
+        setErrors([]);
+
+        const newComment = {
+            userId: sessionUser.id,
+            songId,
+            body: comment
+        }
+        const commentError =  await dispatch(postComment(newComment, theSong.id))
+            .catch(async (res) => {
+                const data = await res.json();
+                if(data && data.errors) setErrors(data.errors);
+            })
+
+        if(commentError && commentError.status === 200){
+            setComment('');
+            setErrors([]);
+            history.push(`/api/songs/${theSong.id}`)
+        }
+
+    }
+    let iconOnPage;
+
+
     if(sessionUser.id === theSong.User.id){
-        icons = (
+        iconOnPage = (
             <div className="iconLiving">
-            <EditFormModal song ={theSong}/>
             <DeleteFormModal song ={theSong}/>
+            <EditFormModal song ={theSong}/>
             </div>
         )
     }
 
+
     return(
+        <>
+
         <div className="songPageDiv">
             <Navigation isLoaded={isLoaded}/>
             <div className="songDetailsDiv">
@@ -40,10 +73,40 @@ function SpecificSongPage({isLoaded}){
                 </div>
                 <div className="rightSide">
                     <img className='specificSongImage' src={theSong.imageUrl ? theSong.imageUrl : defaultImage}/>
-                    {icons}
+                    {iconOnPage}
                 </div>
             </div>
         </div>
+
+        <div className="commentSection">
+
+            <form onSubmit={handleSubmit} className='commentForm'>
+                <img className="formSongImage" src={theSong.imageUrl ? theSong.imageUrl : defaultImage}/>
+                <input
+                className="commentInput"
+                type='text'
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                placeholder='Write Comment...'
+                />
+                <button type="submit" className="commentButton">Comment</button>
+            </form>
+            {errors.length > 0 ? <div className="errorsSection">
+                    {errors.map((error, i) => {
+                        return <li className='errorsList' key = {i}>{error}</li>
+                    })}
+                </div>: ''}
+            <div className="allComments">
+                {commentsArr && commentsArr.comments.map((comment, i)=>{
+                    return (
+                        <div key={i}>
+                            <CommentDeleteEdit comment = {comment}/>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
+        </>
     )
 
 }

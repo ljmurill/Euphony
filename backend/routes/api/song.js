@@ -17,6 +17,7 @@ const songValidation = [
     handleValidationErrors
 ]
 
+
 router.get('/', asyncHandler(async(req, res) => {
     const song = await db.Song.findAll({
         include: [db.User],
@@ -55,16 +56,7 @@ router.post('/create', songValidation, asyncHandler(async(req, res, next) => {
 
 }));
 
-// router.get('/:songId(\\d+)', asyncHandler(async(req, res, next) => {
-//     const song = await db.Song.findByPk(req.params.id, {
-//         include: db.User,
-//     })
 
-//     if(song){
-//         console.log(song);
-//         res.json(song)
-//     }
-// }));
 
 router.put('/:songId(\\d+)', songValidation, asyncHandler(async(req, res, next) => {
     const {userId, title, url, imageUrl} = req.body;
@@ -82,10 +74,20 @@ router.put('/:songId(\\d+)', songValidation, asyncHandler(async(req, res, next) 
 router.delete('/:songId(\\d+)', asyncHandler(async(req, res, next) => {
     const songId = req.params.songId;
     const song = await db.Song.findByPk(songId);
+    const comments = await db.Comment.findAll({
+        where:{
+            songId
+        }
+    })
 
     if(song){
+        comments.forEach(async(comment) => {
+            await comment.destroy();
+        });
         await song.destroy();
         res.json({message: 'Success'});
     }
 }));
+
+
 module.exports = router;

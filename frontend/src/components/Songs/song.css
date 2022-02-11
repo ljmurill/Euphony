@@ -169,7 +169,7 @@
 }
 
 .trashCan{
-    margin-right: 12px;
+    margin-left: 12px;
 }
 
 .warning{
@@ -238,4 +238,51 @@
 
 .deleteFormSoundCloud{
     color: rgb(113, 62, 172);
+}
+
+.commentSection{
+    background-color: white;
+    height: fit-content;
+    min-height: 400px;
+}
+.commentInput{
+    width: 500px;
+    height: 20px;
+    border: 7px solid rgb(226, 223, 223);
+    outline: none;
+}
+
+.commentButton{
+    /* border: none;
+    background-color: rgb(113, 62, 172);
+    color: white;
+    height: 36px;
+    padding: 5px; */
+    display: none;
+}
+
+.formSongImage{
+    height: 36px;
+    width: 36px;
+}
+
+.commentForm{
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.allComments{
+    padding: 0 15px 15px 15px;
+}
+.comment{
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+
+}
+
+.comment:hover{
+    background-color: rgb(226, 223, 223);
+
 }
