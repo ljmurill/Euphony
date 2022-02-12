@@ -77,7 +77,7 @@ router.put('/:songId(\\d+)', songValidation, asyncHandler(async(req, res, next) 
     const specificSong = await db.Song.findByPk(req.params.songId, {
         include: db.User
     });
-    console.log('YELLow', specificSong)
+  
     if(specificSong){
         await specificSong.update({userId, title, url, imageUrl});
         res.json({ specificSong })

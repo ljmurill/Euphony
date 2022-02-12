@@ -27,8 +27,7 @@ function CommentDeleteEdit({comment, setComment, setEdit, setCommentId, songId})
         setComment(comment.body);
         const commentDiv = document.querySelector(`#comment${comment.id}`);
         setCommentId(comment.id);
-        console.log(commentDiv);
-        // commentDiv.remove();
+
         commentDiv.classList.add('hidden');
         setEdit(true)
     }
@@ -67,7 +66,7 @@ function CommentDeleteEdit({comment, setComment, setEdit, setCommentId, songId})
                     </div>
                 </div>
 
-        
+
                 {((sessionUser.id === comment.User.id) && icons) ? iconOnComment: ''}
             </div>
         )

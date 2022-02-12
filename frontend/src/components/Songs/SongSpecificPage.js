@@ -18,7 +18,7 @@ function SpecificSongPage({isLoaded}){
     const dispatch = useDispatch();
     const history = useHistory();
     const [edit, setEdit] = useState(false);
-    // const [queueDelete, setQueueDelete] = useState(false);
+    
     const [comment, setComment] = useState('');
     const [errors, setErrors] = useState([]);
     const [commentId, setCommentId] = useState('');
@@ -27,7 +27,7 @@ function SpecificSongPage({isLoaded}){
     const sessionUser = useSelector(state => state.session.user);
     const commentsArr = useSelector(state => state.comments);
     const userSongs = useSelector(state => state.songs.relatedSongs);
-    // console.log(theSong.url.split('\\')[2])
+
 
     useEffect(() =>{
         dispatch(allComments(+songId))

@@ -48,7 +48,7 @@ function EditSong({theSong, setShowModal}){
             })
 
         if(songError && songError.status === 200){
-           console.log('hello');
+
            setShowModal(false);
            history.push(`/api/songs/${theSong.id}`)
         }
@@ -94,22 +94,10 @@ function EditSong({theSong, setShowModal}){
                     className="input"
                     type='text'
                     />
-                    {/* <div className="warning">Leave section below empty to keep song</div>
-                    <div className="file">
-                        <input
-                        id="fileInput"
-                        onChange={(e) => {
-                            setSongLink(e.target.value)
-                            console.log(songLink)}}
-                        value={songLink}
-                        placeholder="Mp3 Url Link"
-                        type='file'/>
-                        <label htmlFor='fileInput' className="labelFileInput">Choose file...</label>
-                        <span className='fileName' onChange={(e) => setSongLink(e.target.value)}>{songLink}</span>
-                    </div> */}
+
                     <button type="submit" className="songButton">Update Song</button>
                 </form>
-                    {/* <i className="fa-solid fa-up-from-line fa-3x"/> */}
+
 
             </div>
         </div>

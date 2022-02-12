@@ -106,12 +106,10 @@ const commentReducer = (state = initialState, action) => {
                     index = i;
                 }
             })
-            console.log('HELLO', action.comment);
-            console.log('NEWW', newState.comments[index]);
+
             const newComments = [...newState.comments];
             newComments[index] = {...action.comment};
-            // newComments.splice(index, 1);
-            // const newestComments = [{...action.comment}, ...newComments]
+           
             newState.comments = newComments;
             return newState;
         case DELETE_COMMENT:
