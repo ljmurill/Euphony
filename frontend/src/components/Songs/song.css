@@ -146,6 +146,7 @@
 
 .theSongTitle{
     color: white;
+    font-size: xxx-large;
 }
 
 .theSongUsername{
@@ -167,9 +168,15 @@
     flex-direction: row-reverse;
     margin-top: 10px;
 }
+.iconLiving2{
+    display: flex;
+    flex-direction: row-reverse;
+    gap:5px;
+
+}
 
 .trashCan{
-    margin-left: 12px;
+    margin-left: 10px;
 }
 
 .warning{
@@ -244,14 +251,28 @@
     background-color: white;
     height: fit-content;
     min-height: 400px;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
 }
 .commentInput{
-    width: 500px;
+    width: 800px;
     height: 20px;
     border: 7px solid rgb(226, 223, 223);
     outline: none;
 }
+.commentLeft{
+    display: flex;
+    gap: 5px;
+}
 
+.commentAuthor{
+    color: rgb(138, 136, 136);
+    font-size: small;
+}
+/* .commentBody{
+    margin-left: 10px;
+} */
 .commentButton{
     /* border: none;
     background-color: rgb(113, 62, 172);
@@ -276,8 +297,10 @@
     padding: 0 15px 15px 15px;
 }
 .comment{
-    padding-bottom: 10px;
+    padding: 5px;
+    margin-bottom: 5px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 
 }
@@ -289,11 +312,10 @@
 
 .playSide{
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 15px;
     margin-top: 15px;
-    justify-content: space-between;
+
     height: inherit;
 }
 
@@ -303,6 +325,7 @@
 
 .h1Song{
     margin:0;
+
 }
 
 .hidden{
@@ -313,7 +336,7 @@
     margin-left:30px;
 } */
 audio{
-    background-color: rgb(113, 62, 172);
+    /* background-color: rgb(113, 62, 172); */
     width: 500px;
     margin-bottom: 40px;
     /* margin-left: 30px; */
@@ -321,6 +344,19 @@ audio{
 audio::-webkit-media-controls-panel{
     background-color: rgb(113, 62, 172);
     border: none;
+}
+
+.profileNearTitle{
+    color: rgb(113, 62, 172);
+}
+
+.LowerSection{
+    background-color: white;
+    display: flex;
+}
+
+.h2sideRight{
+    margin: 15px;
 }
 /* audio::-webkit-media-controls-mute-button
 audio::-webkit-media-controls-play-button

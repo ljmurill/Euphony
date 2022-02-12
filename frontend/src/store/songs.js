@@ -4,6 +4,7 @@ const GET_ALL_SONGS = 'songs/getAllSongs';
 const ADD_SONG = 'songs/addSong';
 const EDIT_SONG = 'songs/editSong';
 const DELETE_SONG = 'songs/deleteSong';
+const USER_SONGS = 'songs/userSong';
 
 
 const getAllSongs = (songs) => {
@@ -36,13 +37,17 @@ const deleteSong = (songId) => {
     }
 }
 
+const getUserSongs = (relatedSongs) => {
+    return{
+        type: USER_SONGS,
+        relatedSongs,
+    }
+}
+
 
 export const allSongs = () => async(dispatch) => {
     const response = await csrfFetch('/api/songs');
     const allSongs = await response.json();
-
-    console.log(allSongs)
-
     dispatch(getAllSongs(allSongs));
     return response;
 }
@@ -94,6 +99,17 @@ export const removeSong = (songId) => async(dispatch) => {
     return response;
 }
 
+export const getAllUserSongs = (userId) => async(dispatch) => {
+    const response = await csrfFetch(`/api/songs/${userId}`);
+
+    const userSongs = await response.json();
+
+    if(userSongs){
+        dispatch(getUserSongs(userSongs))
+    }
+    return response;
+}
+
 const initialState = {songs: []};
 
 const songsReducer = (state = initialState, action) => {
@@ -128,6 +144,11 @@ const songsReducer = (state = initialState, action) => {
             }});
 
             if(newState.songs[deleteIndex]) delete newState.songs[deleteIndex];
+            return newState;
+        case USER_SONGS:
+            newState = {...state};
+            const related = [...action.relatedSongs]
+            newState.relatedSongs = related;
             return newState;
         default:
             return state;

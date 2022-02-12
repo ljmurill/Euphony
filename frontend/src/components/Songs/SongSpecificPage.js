@@ -9,7 +9,8 @@ import EditFormModal from "./EditFormModal";
 import DeleteFormModal from "./DeleteFormModal/DeleteSong";
 import {updateOneComment} from '../../store/comments';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ReactAudioPlayer from 'react-audio-player';
+import RelatedSongs from "./RelatedSongs/RelatedSongs";
+import { getAllUserSongs } from "../../store/songs";
 
 function SpecificSongPage({isLoaded}){
     const defaultImage = 'https://preview.redd.it/e1l2mfuraia51.jpg?width=960&crop=smart&auto=webp&s=598397a1367b7a4a7c273d10a0298d6b848a1c94';
@@ -25,10 +26,12 @@ function SpecificSongPage({isLoaded}){
     const theSong = songs.find(song => song.id === +songId);
     const sessionUser = useSelector(state => state.session.user);
     const commentsArr = useSelector(state => state.comments);
-    console.log(theSong.url.split('\\')[2])
+    const userSongs = useSelector(state => state.songs.relatedSongs);
+    // console.log(theSong.url.split('\\')[2])
 
     useEffect(() =>{
         dispatch(allComments(+songId))
+        dispatch(getAllUserSongs(theSong.User.id));
     }, [dispatch])
 
     const handleSubmit = async(e) =>{
@@ -103,6 +106,7 @@ function SpecificSongPage({isLoaded}){
                             autoPlay
                             controls
                             /> */}
+                        <FontAwesomeIcon icon="circle-user" size="4x" className="profileNearTitle"/>
                         <div className="songNameUser">
                             <h1 className='h1Song'><span className="theSongTitle">{theSong.title}</span></h1>
                             <div className='theSongUsername'>{theSong.User.username}</div>
@@ -116,7 +120,7 @@ function SpecificSongPage({isLoaded}){
                 </div>
             </div>
         </div>
-
+        <div className="LowerSection">
         <div className="commentSection">
 
             <form onSubmit={handleSubmit} className='commentForm'>
@@ -143,6 +147,14 @@ function SpecificSongPage({isLoaded}){
                         </div>
                     )
                 })}
+            </div>
+        </div>
+
+            <div>
+                <h2 className="h2sideRight">More songs from {theSong.User.username}</h2>
+                <div>
+                    <RelatedSongs songs = {userSongs}/>
+                </div>
             </div>
         </div>
         </>

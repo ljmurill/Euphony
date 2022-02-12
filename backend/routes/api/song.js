@@ -1,9 +1,10 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check, validationResult } = require('express-validator');
-const { handleValidationErrors, requireAuth } = require('../../utils/validation');
+const { handleValidationErrors } = require('../../utils/validation');
 
 const db = require('../../db/models');
+
 
 const router = express.Router();
 
@@ -29,6 +30,19 @@ router.get('/', asyncHandler(async(req, res) => {
     }
 }));
 
+router.get('/:userId(\\d+)' , asyncHandler(async(req, res) => {
+    const userId = req.params.userId;
+    const songs = await db.Song.findAll({
+        where: {
+            userId
+        },
+        include: [db.User]
+    })
+
+    if(songs){
+        res.json(songs)
+    }
+}))
 
 
 router.post('/create', songValidation, asyncHandler(async(req, res, next) => {

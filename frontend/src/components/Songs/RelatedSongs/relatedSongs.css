@@ -1,0 +1,35 @@
+.imageOnRightSide{
+    width: 35px;
+    height: 35px;
+}
+
+.relatedSongsInfo{
+    margin: 10px;
+    display: flex;
+    gap: 10px;
+}
+.relatedSongsInfo:hover{
+    background-color: rgb(226, 223, 223);
+}
+
+.titleNameRight{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+}
+.relatedLink{
+    text-decoration: none;
+    color: black;
+}
+
+.usernameRelated{
+    font-size: small;
+    color: rgb(138, 136, 136);
+}
+
+.titleRelated{
+    font-weight:500;
+}
+/* .relatedSongsDiv{
+    overflow-y: scroll;
+} */

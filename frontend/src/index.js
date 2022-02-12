@@ -15,9 +15,9 @@ import * as sessionActions from './store/session';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab, faSoundcloud} from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faHeadphones, faEllipsis, faPenToSquare, faTrashCan, faCirclePlay} from '@fortawesome/free-solid-svg-icons'
+import { faCheckSquare, faHeadphones, faEllipsis, faPenToSquare, faTrashCan, faCirclePlay, faCircleUser} from '@fortawesome/free-solid-svg-icons'
 
-library.add(fab, faCheckSquare, faHeadphones, faEllipsis, faPenToSquare, faTrashCan, faSoundcloud, faCirclePlay)
+library.add(fab, faCheckSquare, faHeadphones, faEllipsis, faPenToSquare, faTrashCan, faSoundcloud, faCirclePlay, faCircleUser)
 
 const store = configureStore();
 
