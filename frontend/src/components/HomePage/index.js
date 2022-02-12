@@ -5,6 +5,8 @@ import '../HomePage/homePage.css'
 import { useEffect } from "react";
 import SearchBar from "./SearchBar";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 
 
@@ -29,7 +31,15 @@ function Home({isLoaded}){
             <div className="homeHeader">
                 <Navigation isLoaded={isLoaded}/>
                 <SearchBar allSongs={songsArr}/>
-
+                <div className="myInfo">
+                    <div className="aboutLinks">
+                        {/* <FontAwesomeIcon icon={faLinkedin} />
+                        <FontAwesomeIcon icon={faGithub} /> */}
+                        <a href="https://www.linkedin.com/in/leonel-murillo/"><FontAwesomeIcon icon={faLinkedin} size='3x' color="white"/></a>
+                        <a href="https://github.com/ljmurill/Euphony"><FontAwesomeIcon icon={faGithub} size='3x' color="white"/></a>
+                    </div>
+                    <div className="myName">By Leonel Murillo</div>
+                </div>
             </div>
 
             <h3 className="titleSongs">What's new on Euphony!</h3>

@@ -30,6 +30,14 @@
 .titleRelated{
     font-weight:500;
 }
-/* .relatedSongsDiv{
-    overflow-y: scroll;
-} */
+
+
+.relatedSongsDiv{
+    height: 350px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.relatedSongsDiv::-webkit-scrollbar{
+    display: none;
+}

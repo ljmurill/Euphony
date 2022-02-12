@@ -15,6 +15,12 @@
     margin: 10px;
 }
 
+.songLink{
+    text-decoration: none;
+    color: black;
+    font-size: medium;
+    font-weight: 500;
+}
 .songImage{
     width: 150px;
     height: 150px;
@@ -101,28 +107,20 @@
 }
 
 .uploadButton{
-    background-color: white;
     border: none;
-    font-family: inherit;
-
-    /* border: 1px solid rgb(113, 62, 172); */
-    border-radius: 3px;
-    color: rgb(113, 62, 172);
     padding: 5px;
     background-color: rgb(113, 62, 172);
-    border: none;
     font-family: inherit;
-
     border-radius: 3px;
     color: white;
+    height: 40px;
+
 }
 
 .uploadButton:hover{
     background-color: white;
     border: none;
     font-family: inherit;
-
-    /* border: 1px solid rgb(113, 62, 172); */
     border-radius: 3px;
     color: rgb(113, 62, 172);
     padding: 5px;
@@ -131,7 +129,7 @@
 .dataResults{
     background-color: white;
     width: 100%;
-    height: fit-content;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -145,8 +143,7 @@
 }
 
 .data{
-    padding-top: 10px;
-    padding-left: 10px;
+    padding:10px;
 }
 .data:hover{
     background-color: rgb(219, 215, 215);
@@ -170,4 +167,24 @@
 .linkSong{
     text-decoration: none;
     color: black;
+}
+
+.aboutLinks{
+    display: flex;
+    gap: 10px;
+}
+
+.myInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-left: 10px;
+    position: absolute;
+    top: 45%;
+}
+
+.myName{
+    color: white;
+    font-weight: 700;
 }

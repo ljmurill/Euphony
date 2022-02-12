@@ -295,7 +295,15 @@
 
 .allComments{
     padding: 0 15px 15px 15px;
+    height: 335px;
+    overflow: hidden;
+    overflow-y: auto;
 }
+
+.allComments::-webkit-scrollbar{
+    display: none;
+}
+
 .comment{
     padding: 5px;
     margin-bottom: 5px;
