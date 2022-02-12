@@ -14,7 +14,7 @@ function EditSong({theSong, setShowModal}){
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const [title, setTitle] = useState(theSong.title);
-    const [songLink, setSongLink] = useState('');
+    const [songLink, setSongLink] = useState(theSong.url);
     const [imageUrl, setImageUrl] = useState(theSong.imageUrl);
     const [errors, setErrors] = useState([]);
 
@@ -87,7 +87,14 @@ function EditSong({theSong, setShowModal}){
                     placeholder="Image Url (Optional)"
                     className="input"
                     type='text'/>
-                    <div className="warning">Leave section below empty to keep song</div>
+                    <input
+                    onChange={(e) => setSongLink(e.target.value)}
+                    value={songLink}
+                    placeholder="Song Url"
+                    className="input"
+                    type='text'
+                    />
+                    {/* <div className="warning">Leave section below empty to keep song</div>
                     <div className="file">
                         <input
                         id="fileInput"
@@ -99,7 +106,7 @@ function EditSong({theSong, setShowModal}){
                         type='file'/>
                         <label htmlFor='fileInput' className="labelFileInput">Choose file...</label>
                         <span className='fileName' onChange={(e) => setSongLink(e.target.value)}>{songLink}</span>
-                    </div>
+                    </div> */}
                     <button type="submit" className="songButton">Update Song</button>
                 </form>
                     {/* <i className="fa-solid fa-up-from-line fa-3x"/> */}

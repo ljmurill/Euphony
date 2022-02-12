@@ -97,20 +97,18 @@ function SpecificSongPage({isLoaded}){
             <div className="songDetailsDiv">
                 <div className="leftSide">
                     <div className="playSide">
-                        <FontAwesomeIcon icon="circle-play" size="4x" className="play" />
-                        {/* <audio controls src={`${theSong.url}`} type='audio/mpeg'>
-
-                        </audio> */}
-                        <ReactAudioPlayer
-                            src={`${theSong.url.split('\\')[2]}`}
+                        {/* <FontAwesomeIcon icon="circle-play" size="4x" className="play" /> */}
+                        {/* <ReactAudioPlayer
+                            src={`${theSong.url}`}
                             autoPlay
                             controls
-                            />
-                        <div>
+                            /> */}
+                        <div className="songNameUser">
                             <h1 className='h1Song'><span className="theSongTitle">{theSong.title}</span></h1>
                             <div className='theSongUsername'>{theSong.User.username}</div>
                         </div>
                     </div>
+                        <audio controls src={`${theSong.url}`}></audio>
                 </div>
                 <div className="rightSide">
                     <img className='specificSongImage' src={theSong.imageUrl ? theSong.imageUrl : defaultImage}/>
