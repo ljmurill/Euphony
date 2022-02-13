@@ -147,9 +147,9 @@ function SpecificSongPage({isLoaded}){
 
             <div>
                 <h2 className="h2sideRight">More songs from {theSong.User.username}</h2>
-                <div>
+
                     <RelatedSongs songs = {userSongs} theSong ={theSong}/>
-                </div>
+                
             </div>
         </div>
         </>

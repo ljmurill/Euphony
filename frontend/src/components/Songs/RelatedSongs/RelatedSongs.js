@@ -11,9 +11,9 @@ function RelatedSongs({songs, theSong}){
         <div className='relatedSongsDiv'>
             {songs && songs.map((song, i) => (
                 <Link key={i} to={`/api/songs/${song.id}`} className='relatedLink'>
+                {theSong.id !== song.id &&
                 <div key={song.id} className='relatedSongsInfo'>
-                    {theSong.id !== song.id &&
-                    <>
+
                     <img className ='imageOnRightSide' alt='' src={song.imageUrl ? song.imageUrl : defaultImage}/>
                     <div className='titleNameRight'>
                         <div className='titleRelated'>
@@ -23,9 +23,9 @@ function RelatedSongs({songs, theSong}){
                             {song.User.username}
                         </div>
                     </div>
-                    </>
-                    }
+
                 </div>
+                }
                 </Link>
             ))}
         </div>
