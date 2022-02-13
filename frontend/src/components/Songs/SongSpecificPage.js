@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { allComments, postComment } from "../../store/comments";
 import '../Songs/song.css';
 import { useEffect, useState } from "react";
-import { useHistory, Redirect, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import CommentDeleteEdit from "./CommentDeleteEdit/CommentDeleteEdit";
 import EditFormModal from "./EditFormModal";
 import DeleteFormModal from "./DeleteFormModal/DeleteSong";
@@ -18,7 +18,7 @@ function SpecificSongPage({isLoaded}){
     const dispatch = useDispatch();
     const history = useHistory();
     const [edit, setEdit] = useState(false);
-    
+
     const [comment, setComment] = useState('');
     const [errors, setErrors] = useState([]);
     const [commentId, setCommentId] = useState('');
@@ -100,12 +100,7 @@ function SpecificSongPage({isLoaded}){
             <div className="songDetailsDiv">
                 <div className="leftSide">
                     <div className="playSide">
-                        {/* <FontAwesomeIcon icon="circle-play" size="4x" className="play" /> */}
-                        {/* <ReactAudioPlayer
-                            src={`${theSong.url}`}
-                            autoPlay
-                            controls
-                            /> */}
+
                         <FontAwesomeIcon icon="circle-user" size="4x" className="profileNearTitle"/>
                         <div className="songNameUser">
                             <h1 className='h1Song'><span className="theSongTitle">{theSong.title}</span></h1>
@@ -115,7 +110,7 @@ function SpecificSongPage({isLoaded}){
                         <audio controls src={`${theSong.url}`}></audio>
                 </div>
                 <div className="rightSide">
-                    <img className='specificSongImage' src={theSong.imageUrl ? theSong.imageUrl : defaultImage}/>
+                    <img className='specificSongImage' alt='' src={theSong.imageUrl ? theSong.imageUrl : defaultImage}/>
                     {iconOnPage}
                 </div>
             </div>
@@ -124,7 +119,7 @@ function SpecificSongPage({isLoaded}){
         <div className="commentSection">
 
             <form onSubmit={handleSubmit} className='commentForm'>
-                <img className="formSongImage" src={theSong.imageUrl ? theSong.imageUrl : defaultImage}/>
+                <img className="formSongImage" alt='' src={theSong.imageUrl ? theSong.imageUrl : defaultImage}/>
                 <input
                 className="commentInput"
                 type='text'
@@ -153,7 +148,7 @@ function SpecificSongPage({isLoaded}){
             <div>
                 <h2 className="h2sideRight">More songs from {theSong.User.username}</h2>
                 <div>
-                    <RelatedSongs songs = {userSongs}/>
+                    <RelatedSongs songs = {userSongs} theSong ={theSong}/>
                 </div>
             </div>
         </div>

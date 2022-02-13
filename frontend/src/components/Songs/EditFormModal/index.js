@@ -3,7 +3,7 @@ import { Modal } from '../../../context/Modal';
 import EditSong from './EditSongs';
 import '../../Songs/song.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Navigation from '../../Navigation';
+
 
 function EditFormModal({song}) {
 
@@ -13,7 +13,7 @@ function EditFormModal({song}) {
   return (
     <>
       <FontAwesomeIcon icon='pen-to-square' color="white" onClick={() => {
-        
+
           setShowModal(true)
     }}/>
       {showModal && (

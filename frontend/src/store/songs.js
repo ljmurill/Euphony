@@ -92,7 +92,7 @@ export const removeSong = (songId) => async(dispatch) => {
 
 
     const deletedSong = await response.json();
-    if(deletedSong.message = 'Success'){
+    if(deletedSong.message === 'Success'){
         dispatch(deleteSong(songId))
     }
 

@@ -1,10 +1,8 @@
-
-import Navigation from "../../Navigation";
 import { useDispatch, useSelector } from "react-redux";
 import '../../Songs/song.css';
 import { useState } from "react";
 import {editOneSong} from '../../../store/songs';
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
@@ -69,10 +67,7 @@ function EditSong({theSong, setShowModal}){
                         return <li className='errorsList' key = {i}>{error}</li>
                     })}
                 </div>: ''}
-                {/* {errors.length > 0 &&
-                    errors.map((error, i) => {
-                        return <li className='errorsList' key = {i}>{error}</li>
-                    })} */}
+
 
                 <form className="songForm" onSubmit={handleSubmit}>
                     <input

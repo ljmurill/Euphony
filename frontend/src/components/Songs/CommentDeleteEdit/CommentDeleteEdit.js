@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../../Songs/song.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,7 +36,7 @@ function CommentDeleteEdit({comment, setComment, setEdit, setCommentId, songId})
 
         const finished = await dispatch(deleteOneComment(comment, comment.id, songId))
             .catch(async (res) => {
-                const data = await res.json();
+                await res.json();
             })
 
             if(finished && finished.status === 200){
