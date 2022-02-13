@@ -32,7 +32,7 @@ function SpecificSongPage({isLoaded}){
     useEffect(() =>{
         dispatch(allComments(+songId))
         dispatch(getAllUserSongs(theSong.User.id));
-    }, [dispatch])
+    }, [dispatch, songId, theSong.User.id])
 
     const handleSubmit = async(e) =>{
         e.preventDefault();
