@@ -30,7 +30,7 @@ function SpecificSongPage({isLoaded}){
 
 
     useEffect(() =>{
-        dispatch(allComments(+songId))
+        dispatch(allComments(songId))
         dispatch(getAllUserSongs(theSong.User.id));
     }, [dispatch, songId, theSong.User.id])
 
@@ -149,7 +149,7 @@ function SpecificSongPage({isLoaded}){
                 <h2 className="h2sideRight">More songs from {theSong.User.username}</h2>
 
                     <RelatedSongs songs = {userSongs} theSong ={theSong}/>
-                
+
             </div>
         </div>
         </>

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteOneComment } from '../../../store/comments';
 import { useHistory } from 'react-router-dom';
+import {allComments} from '../../../store/comments'
 
 
 
@@ -40,6 +41,7 @@ function CommentDeleteEdit({comment, setComment, setEdit, setCommentId, songId})
             })
 
             if(finished && finished.status === 200){
+                dispatch(allComments(songId))
                 history.push(`/api/songs/${songId}`);
             }
     }
