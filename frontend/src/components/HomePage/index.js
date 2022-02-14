@@ -22,7 +22,7 @@ function Home({isLoaded}){
 
     useEffect(() => {
         dispatch(allSongs())
-      }, [])
+      }, [dispatch])
 
 
 
@@ -31,15 +31,6 @@ function Home({isLoaded}){
             <div className="homeHeader">
                 <Navigation isLoaded={isLoaded}/>
                 <SearchBar allSongs={songsArr}/>
-                <div className="myInfo">
-                    <div className="aboutLinks">
-                        {/* <FontAwesomeIcon icon={faLinkedin} />
-                        <FontAwesomeIcon icon={faGithub} /> */}
-                        <a href="https://www.linkedin.com/in/leonel-murillo/"><FontAwesomeIcon icon={faLinkedin} size='3x' color="white"/></a>
-                        <a href="https://github.com/ljmurill/Euphony"><FontAwesomeIcon icon={faGithub} size='3x' color="white"/></a>
-                    </div>
-                    <div className="myName">By Leonel Murillo</div>
-                </div>
             </div>
 
             <h3 className="titleSongs">What's new on Euphony!</h3>
@@ -50,7 +41,7 @@ function Home({isLoaded}){
                         <Link to={`/api/songs/${song.id}`} key={id} className='linkSong'>
                         <div className="songBlock">
                             <div className="imageDiv">
-                                {song.imageUrl ? <img src={song.imageUrl} className='songImage'/>: <img src={defaultImage} className='songImage'/>}
+                                {song.imageUrl ? <img src={song.imageUrl} alt='' className='songImage'/>: <img alt='' src={defaultImage} className='songImage'/>}
                             </div>
                                 <div className="optionsSongs">
                                     <div>
@@ -68,7 +59,7 @@ function Home({isLoaded}){
 
                         <div className="songBlock" key={id}>
                             <div className="imageDiv">
-                                {song.imageUrl ? <img src={song.imageUrl} className='songImage'/>: <img src={defaultImage} className='songImage'/>}
+                                {song.imageUrl ? <img src={song.imageUrl} alt='' className='songImage'/>: <img src={defaultImage} alt='' className='songImage'/>}
                             </div>
                                 <div className="optionsSongs">
                                     <div>
@@ -81,6 +72,16 @@ function Home({isLoaded}){
 
                 })}
             </div>
+            <footer className="myInfo">
+                <div className="myName">
+                Created By Leonel Murillo
+                </div>
+                <div className="aboutLinks">
+                <a href="https://www.linkedin.com/in/leonel-murillo/"><FontAwesomeIcon icon={faLinkedin} size='2x' color='black' className="aboutMe"/></a>
+                <a href="https://github.com/ljmurill/Euphony"><FontAwesomeIcon icon={faGithub} size='2x' color="black" className="aboutMe"/></a>
+                </div>
+
+            </footer>
         </>
 
     )

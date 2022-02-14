@@ -177,14 +177,21 @@
 .myInfo{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
-    margin-left: 10px;
-    position: absolute;
-    top: 45%;
+    background-color: white;
+
 }
 
 .myName{
-    color: white;
-    font-weight: 700;
+    border-top: 1px rgb(187, 187, 187) solid;
+    width: 400px;
+    text-align: center;
+    font-size: small;
+    padding-top: 10px;
+    color: rgb(187, 187, 187);
+}
+
+.aboutMe{
+    color: rgb(187, 187, 187);
 }
