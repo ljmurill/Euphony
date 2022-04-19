@@ -11,6 +11,8 @@ import {updateOneComment} from '../../store/comments';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import RelatedSongs from "./RelatedSongs/RelatedSongs";
 import { getAllUserSongs } from "../../store/songs";
+import Player from "../AudioPlayer/AudioPlayer";
+import WaveForm from "./WaveSurfer/Wavesurfer";
 
 function SpecificSongPage({isLoaded}){
     const defaultImage = 'https://preview.redd.it/e1l2mfuraia51.jpg?width=960&crop=smart&auto=webp&s=598397a1367b7a4a7c273d10a0298d6b848a1c94';
@@ -107,7 +109,8 @@ function SpecificSongPage({isLoaded}){
                             <div className='theSongUsername'>{theSong.User.username}</div>
                         </div>
                     </div>
-                        <audio controls src={`${theSong.url}`}></audio>
+                        <WaveForm song={theSong.url}/>
+                        {/* <audio controls src={`${theSong.url}`}></audio> */}
                 </div>
                 <div className="rightSide">
                     <img className='specificSongImage' alt='' src={theSong.imageUrl ? theSong.imageUrl : defaultImage}/>
@@ -152,6 +155,7 @@ function SpecificSongPage({isLoaded}){
 
             </div>
         </div>
+        {/* <Player song={theSong}/> */}
         </>
     )
 

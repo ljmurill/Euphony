@@ -32,7 +32,7 @@ function Home({isLoaded}){
                 <Navigation isLoaded={isLoaded}/>
                 <SearchBar allSongs={songsArr}/>
             </div>
-
+            
             <h3 className="titleSongs">What's new on Euphony!</h3>
             <div className="songs">
                 {sessionUser && songsArr && songsArr.map((song, id) => {
