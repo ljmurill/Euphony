@@ -10,9 +10,10 @@ This app makes use of the following technologies:
 - PostgreSQL
 
 ## Features
+### Home Page
 This is the home page of Euphony which will show you the 20 most recent songs as well as a search bar where you can search for any song!
 ![image](https://user-images.githubusercontent.com/72574258/164094348-d2003d62-5418-4cfe-8593-24868f71f0ba.png)
-
+### Song Page
 In Euphony you will be able to upload, edit, and delete songs as well as comments!
 ![image](https://user-images.githubusercontent.com/72574258/164094361-f779a993-a56b-44bc-bafa-b29fc421936c.png)
 
