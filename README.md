@@ -1,5 +1,5 @@
 # Euphony
-[Euphony](https://euphonysound.herokuapp.com/), a place to listen to tunes! A clone of SoundCloud where you are able to upload music and comment on songs.
+[Euphony](https://euphonysound.herokuapp.com/), a place to listen to tunes! A website inspired by SoundCloud where you are able to upload music and comment on songs.
 
 ## Technologies
 This app makes use of the following technologies:
