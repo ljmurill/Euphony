@@ -1,4 +1,23 @@
 # Euphony
+[Euphony](https://euphonysound.herokuapp.com/), a place to listen to tunes! A clone of SoundCloud where you are able to upload music and comment on songs.
+
+## Technologies
+This app makes use of the following technologies:
+- Express.js
+- React/Redux
+- Javascript
+- Sequelize
+- PostgreSQL
+
+## Features
+This is the home page of Euphony which will show you the 20 most recent songs as well as a search bar where you can search for any song!
+![image](https://user-images.githubusercontent.com/72574258/164094348-d2003d62-5418-4cfe-8593-24868f71f0ba.png)
+
+In Euphony you will be able to upload, edit, and delete songs as well as comments!
+![image](https://user-images.githubusercontent.com/72574258/164094361-f779a993-a56b-44bc-bafa-b29fc421936c.png)
+
+
+## Installation
 1. Clone this repo.
     * `git clone https://github.com/ljmurill/Euphony.git`
 
@@ -28,5 +47,7 @@
 11. Once logged in you can upload a song by clicking the upload button which will take you to a upload form which will require a title name and a audio url of your choice, optionally you can also upload any image of your choice by pasting the image link address.
 12. You can view the song you just posted or any songs that were already posted by just clicking on them on the home page, this will take you to a new page where you will be able to edit or delete the song if you are the User that posted it. 
 13. You will also be able to comment and edit or delete your comment on the same page. 
+
+
 
 ## Happy Browsing!
