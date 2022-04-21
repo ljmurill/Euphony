@@ -2,8 +2,10 @@ import Navigation from "../Navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { allSongs } from "../../store/songs";
 import '../HomePage/homePage.css'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
+import LoginForm from "../LoginFormModal/LoginForm";
+import { Modal } from "../../context/Modal";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
@@ -19,7 +21,6 @@ function Home({isLoaded}){
     const songsArr = useSelector(state => state.songs.songs);
     const sessionUser = useSelector(state => state.session.user);
 
-
     useEffect(() => {
         dispatch(allSongs())
       }, [dispatch])
@@ -32,7 +33,7 @@ function Home({isLoaded}){
                 <Navigation isLoaded={isLoaded}/>
                 <SearchBar allSongs={songsArr}/>
             </div>
-            
+
             <h3 className="titleSongs">What's new on Euphony!</h3>
             <div className="songs">
                 {sessionUser && songsArr && songsArr.map((song, id) => {

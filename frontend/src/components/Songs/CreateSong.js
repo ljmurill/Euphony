@@ -12,8 +12,8 @@ function CreateSong({isLoaded}){
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const [title, setTitle] = useState('');
-    const [songLink, setSongLink] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
+    const [song, setSong] = useState(null);
+    const [image, setImage] = useState(null);
     const [errors, setErrors] = useState([]);
 
     const handleSubmit = async(e) => {
@@ -23,8 +23,8 @@ function CreateSong({isLoaded}){
         const newSong = {
             userId: sessionUser.id,
             title,
-            url: songLink,
-            imageUrl
+            url: song,
+            imageUrl : image
         }
 
         const songError =  await dispatch(addOneSong(newSong))
@@ -41,11 +41,19 @@ function CreateSong({isLoaded}){
 
     const reset = () => {
         setTitle('');
-        setSongLink('');
-        setImageUrl('');
+        setSong(null);
+        setImage(null);
         setErrors([]);
     }
 
+    const updateFileImage = (e) => {
+        const file = e.target.files[0];
+        if (file) setImage(file);
+      };
+    const updateFileSong = (e) => {
+        const file = e.target.files[0];
+        if (file) setSong(file);
+        };
     return(
         <div className="createSong">
             <Navigation isLoaded={isLoaded}/>
@@ -71,19 +79,21 @@ function CreateSong({isLoaded}){
                     placeholder="Title"
                     className="input"
                     type='text'/>
-                    <input
+                    <input type='file' name='image' onChange={updateFileImage}/>
+                    {/* <input
                     onChange={(e) => setImageUrl(e.target.value)}
                     value={imageUrl}
                     placeholder="Image Url (Optional)"
                     className="input"
-                    type='text'/>
-                    <input
+                    type='text'/> */}
+                    <input type='file' name="song" onChange={updateFileSong}/>
+                    {/* <input
                     onChange={(e) => setSongLink(e.target.value)}
                     value={songLink}
                     placeholder="Song Url"
                     className="input"
                     type='text'
-                    />
+                    /> */}
                     {/* <div className="file">
                         <input
                         id="fileInput"

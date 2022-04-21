@@ -2,7 +2,8 @@ const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check, validationResult } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-
+const {setTokenCookie} = require('../../utils/auth')
+const {multipleMulterUpload, multiplePublicFileUpload, singleMulterUploadImage, singleMulterUploadSong} = require('../../awsS3')
 const db = require('../../db/models');
 
 
@@ -12,10 +13,10 @@ const songValidation = [
     check('title')
         .notEmpty()
         .withMessage('Needs to have a Title.'),
-    check('url')
-        .notEmpty()
-        .withMessage('Needs to have a valid mp3 file.'),
-    handleValidationErrors
+    // check('url')
+    //     .notEmpty()
+    //     .withMessage('Needs to have a valid mp3 file.'),
+    // handleValidationErrors
 ]
 
 
@@ -45,27 +46,38 @@ router.get('/:userId(\\d+)' , asyncHandler(async(req, res) => {
 }))
 
 
-router.post('/create', songValidation, asyncHandler(async(req, res, next) => {
-    const {userId, title, url, imageUrl} = req.body;
-    const validatorErrors = validationResult(req);
+router.post('/create', songValidation, multipleMulterUpload('urls'), asyncHandler(async(req, res, next) => {
+    // console.log(req.body, '===============')
 
-    if(validatorErrors.isEmpty()){
+
+
+    const files = await multiplePublicFileUpload(req.files)
+    console.log(files[0], '+++++++1')
+    console.log(files[1], '+++++++2')
+    console.log(req.body, '====================2')
+    const {userId, title} = req.body;
+    // const validatorErrors = validationResult(req);
+    // const url = await singlePublicFileUpload(req.file)
+    // const imageUrl = await singlePublicFileUploadImage(req.file)
+    // if(validatorErrors.isEmpty()){
         let newSong = await db.Song.create({
             userId,
             title,
-            url,
-            imageUrl
+            url: files[1],
+            imageUrl: files[0]
         });
-
+        console.log(newSong, '====================1')
        const song = await db.Song.findByPk(newSong.id,{
            include: db.User
        });
 
+
+
         res.json(song);
-    }else{
-        const errors = validatorErrors.array().map((error) => error.msg);
-        res.json({errors});
-    }
+    // }else{
+    //     const errors = validatorErrors.array().map((error) => error.msg);
+    //     res.json({errors});
+    // }
 
 
 }));
@@ -77,7 +89,7 @@ router.put('/:songId(\\d+)', songValidation, asyncHandler(async(req, res, next) 
     const specificSong = await db.Song.findByPk(req.params.songId, {
         include: db.User
     });
-  
+
     if(specificSong){
         await specificSong.update({userId, title, url, imageUrl});
         res.json({ specificSong })

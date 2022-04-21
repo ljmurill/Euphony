@@ -109,7 +109,7 @@ function SpecificSongPage({isLoaded}){
                             <div className='theSongUsername'>{theSong.User.username}</div>
                         </div>
                     </div>
-                        <WaveForm song={theSong.url}/>
+                        <WaveForm song={`${theSong.url}`}/>
                         {/* <audio controls src={`${theSong.url}`}></audio> */}
                 </div>
                 <div className="rightSide">
