@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { allSongs } from "./store/songs";
 
 import { restoreUser } from './store/session';
@@ -23,7 +23,7 @@ function App() {
   }, [dispatch])
 
   return (
-    <>
+    <BrowserRouter>
       {/* <Navigation isLoaded={isLoaded} /> */}
       {isLoaded && (
         <Switch>
@@ -41,7 +41,7 @@ function App() {
           </Route>
         </Switch>
       )}
-    </>
+    </BrowserRouter>
   );
 }
 
