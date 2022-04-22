@@ -1,9 +1,11 @@
 
 import { useDispatch, useSelector } from "react-redux";
+import LoginUploadModal from "../LoginFormModal/loginUploadSetop";
 
 import '../HomePage/homePage.css'
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import LoginSearchModal from "../LoginFormModal/loginSearchSetUp";
 
 const defaultImage = 'https://preview.redd.it/e1l2mfuraia51.jpg?width=960&crop=smart&auto=webp&s=598397a1367b7a4a7c273d10a0298d6b848a1c94';
 function SearchBar({allSongs}){
@@ -57,10 +59,8 @@ function SearchBar({allSongs}){
                     })}
                     {!sessionUser && search.map((song, i) => {
                         return (
-                            <div className="data" key={i}>
-                                <p to = {`api/songs/${song.id}`} className="songLink">
-                                    {song.title}
-                                </p>
+                            <div key={i}>
+                                <LoginSearchModal song={song}/>
                             </div>
                         )
                     })}
@@ -68,7 +68,7 @@ function SearchBar({allSongs}){
                 }
             </label>
                 <p className="orText">or</p>
-                {sessionUser ? <Link to='/api/songs/create'><button className="uploadButton">Upload Your Own</button></Link> : <button className="uploadButton">Upload Your Own</button>}
+                {sessionUser ? <Link to='/api/songs/create'><button className="uploadButton">Upload Your Own</button></Link> : <LoginUploadModal/>}
 
         </div>
         </div>

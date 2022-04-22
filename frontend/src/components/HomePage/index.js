@@ -9,6 +9,7 @@ import { Modal } from "../../context/Modal";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import LoginSongModal from "../LoginFormModal/loginSongsSetup";
 
 
 
@@ -57,17 +58,8 @@ function Home({isLoaded}){
                 {!sessionUser && songsArr && songsArr.map((song, id) => {
 
                     return (id < 20 &&
-
-                        <div className="songBlock" key={id}>
-                            <div className="imageDiv">
-                                {song.imageUrl ? <img src={song.imageUrl} alt='' className='songImage'/>: <img src={defaultImage} alt='' className='songImage'/>}
-                            </div>
-                                <div className="optionsSongs">
-                                    <div>
-                                    <p className="songDetails title">{song.title}</p>
-                                    <p className="songDetails username">{song.User.username}</p>
-                                    </div>
-                                </div>
+                        <div key={id}>
+                            <LoginSongModal song={song}/>
                         </div>
                     )
 

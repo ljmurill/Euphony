@@ -22,6 +22,7 @@
     font-weight: 500;
     display: flex;
     gap: 10px;
+    width: 100%;
 }
 .songImage{
     width: 150px;
@@ -147,6 +148,8 @@
 
 .data{
     padding:10px;
+    display: flex;
+    gap: 10px;
 
 }
 .data:hover{
