@@ -11,6 +11,8 @@ import {updateOneComment} from '../../store/comments';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import RelatedSongs from "./RelatedSongs/RelatedSongs";
 import { getAllUserSongs } from "../../store/songs";
+import Player from "../AudioPlayer/AudioPlayer";
+import WaveForm from "./WaveSurfer/Wavesurfer";
 
 function SpecificSongPage({isLoaded}){
     const defaultImage = 'https://preview.redd.it/e1l2mfuraia51.jpg?width=960&crop=smart&auto=webp&s=598397a1367b7a4a7c273d10a0298d6b848a1c94';
@@ -18,7 +20,8 @@ function SpecificSongPage({isLoaded}){
     const dispatch = useDispatch();
     const history = useHistory();
     const [edit, setEdit] = useState(false);
-
+    const [play, setPlay] = useState(false);
+    // const [pause, setPause] = useState(false);
     const [comment, setComment] = useState('');
     const [errors, setErrors] = useState([]);
     const [commentId, setCommentId] = useState('');
@@ -100,14 +103,16 @@ function SpecificSongPage({isLoaded}){
             <div className="songDetailsDiv">
                 <div className="leftSide">
                     <div className="playSide">
-
-                        <FontAwesomeIcon icon="circle-user" size="4x" className="profileNearTitle"/>
+                        {!play ? <FontAwesomeIcon icon="fa-solid fa-circle-play" size="4x" className="profileNearTitle" onClick={() => setPlay(true)}/> :
+                            <FontAwesomeIcon icon="fa-solid fa-circle-pause" size="4x" className="profileNearTitle" onClick={() => setPlay(false)}/>}
+                        {/* <FontAwesomeIcon icon="circle-user" size="4x" className="profileNearTitle"/> */}
                         <div className="songNameUser">
                             <h1 className='h1Song'><span className="theSongTitle">{theSong.title}</span></h1>
                             <div className='theSongUsername'>{theSong.User.username}</div>
                         </div>
                     </div>
-                        <audio controls src={`${theSong.url}`}></audio>
+                        <WaveForm song={theSong.url} play={play} setPlay={setPlay}/>
+                        {/* <audio controls src={`${theSong.url}`}></audio> */}
                 </div>
                 <div className="rightSide">
                     <img className='specificSongImage' alt='' src={theSong.imageUrl ? theSong.imageUrl : defaultImage}/>
@@ -152,6 +157,7 @@ function SpecificSongPage({isLoaded}){
 
             </div>
         </div>
+        {/* <Player song={theSong}/> */}
         </>
     )
 

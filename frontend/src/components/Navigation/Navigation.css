@@ -25,13 +25,28 @@
     background-color: transparent;
     border: none;
 }
-
+.profileButton:hover{
+    cursor: pointer;
+}
 .profile-dropdown{
     list-style-type: none;
-    margin:0;
+    margin: 0;
+    right: 160px;
+    background-color: white;
+    box-shadow: -1px 1px 15px -4px #fff;
+    width: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 0;
+    margin-top: 5px;
 }
+.dropDown{
+    position: absolute;
+    top: 50px;
 
+}
 .fab.fa-soundcloud.fa-2x{
     color: white;
 }
@@ -102,7 +117,45 @@
     color: white;
 }
 
-.profileList{
+/* .profileList{
     margin-top: 5px;
     text-align: end;
+    border: 1px solid gray;
+    color: black;
+    width: 100%;
+    padding: 10px;
+} */
+
+.nameAndEmail{
+    font-size: 75%;
+    color: black;
+}
+.profile-section{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    padding: 10px 0;
+    align-items: center;
+}
+
+.profile-section:hover{
+    background-color: rgba(228, 226, 226, 0.705);
+}
+
+.logout-section{
+    font-size: 75%;
+    color: black;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    border-top: 0.5px solid #80808045;
+}
+.logout-section:hover{
+    background-color: rgba(228, 226, 226, 0.705);
+    cursor: pointer;
+}
+
+.profileNavSection{
+    font-size: x-large;
 }

@@ -12,8 +12,8 @@ function CreateSong({isLoaded}){
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const [title, setTitle] = useState('');
-    const [songLink, setSongLink] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
+    const [song, setSong] = useState(null);
+    const [image, setImage] = useState(null);
     const [errors, setErrors] = useState([]);
 
     const handleSubmit = async(e) => {
@@ -23,29 +23,32 @@ function CreateSong({isLoaded}){
         const newSong = {
             userId: sessionUser.id,
             title,
-            url: songLink,
-            imageUrl
+            url: song,
+            imageUrl : image
         }
 
         const songError =  await dispatch(addOneSong(newSong))
             .catch(async (res) => {
                 const data = await res.json();
+                console.log(data,'========')
                 if(data && data.errors) setErrors(data.errors);
             })
 
         if(songError && songError.status === 200){
-            reset();
             history.push('/');
         }
     }
 
-    const reset = () => {
-        setTitle('');
-        setSongLink('');
-        setImageUrl('');
-        setErrors([]);
-    }
 
+
+    const updateFileImage = (e) => {
+        const file = e.target.files[0];
+        if (file) setImage(file);
+      };
+    const updateFileSong = (e) => {
+        const file = e.target.files[0];
+        if (file) setSong(file);
+        };
     return(
         <div className="createSong">
             <Navigation isLoaded={isLoaded}/>
@@ -59,10 +62,6 @@ function CreateSong({isLoaded}){
                         return <li className='errorsList' key = {i}>{error}</li>
                     })}
                 </div>: ''}
-                {/* {errors.length > 0 &&
-                    errors.map((error, i) => {
-                        return <li className='errorsList' key = {i}>{error}</li>
-                    })} */}
 
                 <form className="songForm" onSubmit={handleSubmit}>
                     <input
@@ -71,32 +70,21 @@ function CreateSong({isLoaded}){
                     placeholder="Title"
                     className="input"
                     type='text'/>
-                    <input
-                    onChange={(e) => setImageUrl(e.target.value)}
-                    value={imageUrl}
-                    placeholder="Image Url (Optional)"
-                    className="input"
-                    type='text'/>
-                    <input
-                    onChange={(e) => setSongLink(e.target.value)}
-                    value={songLink}
-                    placeholder="Song Url"
-                    className="input"
-                    type='text'
-                    />
-                    {/* <div className="file">
-                        <input
-                        id="fileInput"
-                        onChange={(e) => setSongLink(e.target.value)}
-                        value={songLink}
-                        placeholder="Mp3 Url Link"
-                        type='file'/>
-                        <label htmlFor='fileInput' className="labelFileInput">Choose file...</label>
-                        <span className='fileName' onChange={(e) => setSongLink(e.target.value)}>{songLink}</span>
-                    </div> */}
-                    <button type="submit" className="songButton">Upload Song</button>
+                    <div className="fileIcons">
+                        <input type='file' id='imageFile' name='image' onChange={updateFileImage} hidden/>
+                        <label htmlFor='imageFile'><FontAwesomeIcon icon="fa-solid fa-file-image" color='white' size="2x" className="iconHover"/>
+                        {image ? <FontAwesomeIcon icon="fa-solid fa-circle-check" color="green" className="checkmarkImage"/> : ''}
+                        </label>
+                        <input type='file' id='songFile' name="song" onChange={updateFileSong} hidden/>
+                        <label htmlFor='songFile'><FontAwesomeIcon icon="fa-solid fa-file-audio" color='white' size="2x" className="iconHover"/>
+                        {song ? <FontAwesomeIcon icon="fa-solid fa-circle-check" color="green" className="checkmarkSong"/> : ''}
+                        </label>
+                    {/* {song ? <FontAwesomeIcon icon="fa-solid fa-circle-check" color="green" className="checkmarkSong"/> : ''} */}
+                    {/* {image ? <FontAwesomeIcon icon="fa-solid fa-circle-check" color="green" className="checkmarkImage"/> : ''} */}
+                    </div>
+                        <button type="submit" className="songButton">Upload Song</button>
                 </form>
-                    {/* <i className="fa-solid fa-up-from-line fa-3x"/> */}
+
             </div>
         </div>
     )

@@ -20,6 +20,8 @@
     color: black;
     font-size: medium;
     font-weight: 500;
+    display: flex;
+    gap: 10px;
 }
 .songImage{
     width: 150px;
@@ -76,6 +78,7 @@
     border:none;
     padding: 0%;
     outline: none;
+    padding-left: 10px;
 }
 
 .searchSubmit{
@@ -129,7 +132,7 @@
 .dataResults{
     background-color: white;
     width: 100%;
-    height: 200px;
+    max-height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -144,6 +147,7 @@
 
 .data{
     padding:10px;
+
 }
 .data:hover{
     background-color: rgb(219, 215, 215);

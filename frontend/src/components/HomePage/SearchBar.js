@@ -5,7 +5,7 @@ import '../HomePage/homePage.css'
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-
+const defaultImage = 'https://preview.redd.it/e1l2mfuraia51.jpg?width=960&crop=smart&auto=webp&s=598397a1367b7a4a7c273d10a0298d6b848a1c94';
 function SearchBar({allSongs}){
     const [search, setSearch] = useState([]);
 
@@ -42,7 +42,15 @@ function SearchBar({allSongs}){
                         return (
                             <div className="data" key={i}>
                                 <Link to = {`api/songs/${song.id}`} className="songLink">
-                                    {song.title}
+                                    <img className ='imageOnRightSide' alt='' src={song.imageUrl ? song.imageUrl : defaultImage}/>
+                                    <div className='titleNameRight'>
+                                        <div className='titleRelated'>
+                                            {song.title}
+                                        </div>
+                                        <div className='usernameRelated'>
+                                            {song.User.username}
+                                        </div>
+                                    </div>
                                 </Link>
                             </div>
                         )

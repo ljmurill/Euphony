@@ -12,7 +12,6 @@ function EditSong({theSong, setShowModal}){
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const [title, setTitle] = useState(theSong.title);
-    const [songLink, setSongLink] = useState(theSong.url);
     const [imageUrl, setImageUrl] = useState(theSong.imageUrl);
     const [errors, setErrors] = useState([]);
 
@@ -20,24 +19,15 @@ function EditSong({theSong, setShowModal}){
     const handleSubmit = async(e) => {
         e.preventDefault();
         setErrors([]);
-        let newSong;
-        if(songLink){
-            newSong = {
-                userId: sessionUser.id,
-                title,
-                url: songLink,
-                imageUrl
-            }
-        }else{
 
-            newSong = {
-                userId: sessionUser.id,
-                title,
-                url: theSong.url,
-                imageUrl
-            }
-
+        const newSong = {
+            userId: sessionUser.id,
+            title,
+            url: theSong.url,
+            imageUrl
         }
+
+
 
         const songError =  await dispatch(editOneSong(newSong, theSong.id))
             .catch(async (res) => {
@@ -53,6 +43,11 @@ function EditSong({theSong, setShowModal}){
 
     }
 
+
+    const updateFileImage = (e) => {
+        const file = e.target.files[0];
+        if (file) setImageUrl(file);
+      };
 
 
     return(
@@ -76,19 +71,15 @@ function EditSong({theSong, setShowModal}){
                     placeholder="Title"
                     className="input"
                     type='text'/>
-                    <input
+                    <input type='file' name='image' hidden onChange={updateFileImage}/>
+                    <label htmlFor='imageFile'><FontAwesomeIcon icon="fa-solid fa-file-image" color='white' size="2x" className="iconHover"/>
+                    {imageUrl ? <FontAwesomeIcon icon="fa-solid fa-circle-check" color="green" className="checkmarkImage"/> : ''}</label>
+                    {/* <input
                     onChange={(e) => setImageUrl(e.target.value)}
                     value={imageUrl}
                     placeholder="Image Url (Optional)"
                     className="input"
-                    type='text'/>
-                    <input
-                    onChange={(e) => setSongLink(e.target.value)}
-                    value={songLink}
-                    placeholder="Song Url"
-                    className="input"
-                    type='text'
-                    />
+                    type='text'/> */}
 
                     <button type="submit" className="songButton">Update Song</button>
                 </form>
