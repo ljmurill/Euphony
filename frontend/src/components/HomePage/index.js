@@ -2,7 +2,7 @@ import Navigation from "../Navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { allSongs } from "../../store/songs";
 import '../HomePage/homePage.css'
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchBar from "./SearchBar";
 import LoginForm from "../LoginFormModal/LoginForm";
 import { Modal } from "../../context/Modal";

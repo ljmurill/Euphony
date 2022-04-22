@@ -2,7 +2,7 @@ import Navigation from "../Navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { allComments, postComment } from "../../store/comments";
 import '../Songs/song.css';
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import CommentDeleteEdit from "./CommentDeleteEdit/CommentDeleteEdit";
 import EditFormModal from "./EditFormModal";

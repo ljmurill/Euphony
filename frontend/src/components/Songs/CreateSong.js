@@ -1,7 +1,7 @@
 import Navigation from "../Navigation";
 import { useDispatch, useSelector } from "react-redux";
 import '../Songs/song.css';
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {addOneSong} from '../../store/songs';
 import { useHistory, Redirect } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
