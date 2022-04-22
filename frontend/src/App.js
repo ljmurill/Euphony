@@ -22,10 +22,12 @@ function App() {
     })();
   }, [dispatch])
 
+  if (!isLoaded) {
+    return null;
+  }
   return (
     <BrowserRouter>
       {/* <Navigation isLoaded={isLoaded} /> */}
-      {isLoaded && (
         <Switch>
           <Route exact={true} path="/">
             <Home isLoaded={isLoaded}/>
@@ -40,7 +42,7 @@ function App() {
             404 Page
           </Route>
         </Switch>
-      )}
+
     </BrowserRouter>
   );
 }
