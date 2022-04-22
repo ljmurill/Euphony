@@ -8,6 +8,7 @@ import { restoreUser } from './store/session';
 import Home from './components/HomePage';
 import CreateSong from './components/Songs/CreateSong';
 import SpecificSongPage from './components/Songs/SongSpecificPage';
+import NotFound from './components/404Page/NotFound';
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
             <SpecificSongPage isLoaded ={isLoaded}/>
           </Route>
           <Route>
-            404 Page
+            <NotFound/>
           </Route>
         </Switch>
 
