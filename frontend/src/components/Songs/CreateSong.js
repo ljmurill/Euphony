@@ -72,11 +72,11 @@ function CreateSong({isLoaded}){
                     type='text'/>
                     <div className="fileIcons">
                         <input type='file' id='imageFile' name='image' onChange={updateFileImage} hidden/>
-                        <label htmlFor='imageFile'><FontAwesomeIcon icon="fa-solid fa-file-image" color='white' size="2x"/>
+                        <label htmlFor='imageFile'><FontAwesomeIcon icon="fa-solid fa-file-image" color='white' size="2x" className="iconHover"/>
                         {image ? <FontAwesomeIcon icon="fa-solid fa-circle-check" color="green" className="checkmarkImage"/> : ''}
                         </label>
                         <input type='file' id='songFile' name="song" onChange={updateFileSong} hidden/>
-                        <label htmlFor='songFile'><FontAwesomeIcon icon="fa-solid fa-file-audio" color='white' size="2x"/>
+                        <label htmlFor='songFile'><FontAwesomeIcon icon="fa-solid fa-file-audio" color='white' size="2x" className="iconHover"/>
                         {song ? <FontAwesomeIcon icon="fa-solid fa-circle-check" color="green" className="checkmarkSong"/> : ''}
                         </label>
                     {/* {song ? <FontAwesomeIcon icon="fa-solid fa-circle-check" color="green" className="checkmarkSong"/> : ''} */}
