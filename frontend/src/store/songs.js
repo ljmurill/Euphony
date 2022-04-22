@@ -54,10 +54,6 @@ export const allSongs = () => async(dispatch) => {
 
 export const addOneSong = (song) => async(dispatch)=>{
     const {userId, title, url, imageUrl} = song;
-    console.log(userId, '===========')
-    console.log(title, '===========')
-    console.log(imageUrl, '++++++')
-    console.log(url, '++++++')
     const formData = new FormData();
     formData.append('userId', userId)
     formData.append('title', title)
@@ -69,7 +65,7 @@ export const addOneSong = (song) => async(dispatch)=>{
         headers: { "Content-Type": "multipart/form-data", },
         body: formData
     });
-
+    console.log(response)
     if(response.ok){
         const newSong = await response.json();
 
@@ -81,11 +77,16 @@ export const addOneSong = (song) => async(dispatch)=>{
 }
 
 export const editOneSong = (song, songId) => async(dispatch) => {
-
+    const {userId, title, url, imageUrl} = song;
+    const formData = new FormData();
+    formData.append('url', url)
+    formData.append('userId', userId)
+    formData.append('title', title)
+    if (imageUrl) formData.append('image', imageUrl);
     const response = await csrfFetch(`/api/songs/${songId}`, {
         method: 'PUT',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(song)
+        headers: { "Content-Type": "multipart/form-data"},
+        body: formData
     })
 
     if(response.ok){

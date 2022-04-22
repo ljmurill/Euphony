@@ -93,7 +93,7 @@ const storage = multer.memoryStorage({
   },
 });
 const singleMulterUploadImage = (nameOfKey) =>
-  multer({ storage: storageImage }).single(nameOfKey);
+  multer({ storage: storage }).single(nameOfKey);
 const singleMulterUploadSong = (nameOfKey) =>
   multer({ storage: storageSong }).single(nameOfKey);
 const multipleMulterUpload = (nameOfKey) =>

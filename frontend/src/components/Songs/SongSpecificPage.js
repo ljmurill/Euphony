@@ -20,7 +20,8 @@ function SpecificSongPage({isLoaded}){
     const dispatch = useDispatch();
     const history = useHistory();
     const [edit, setEdit] = useState(false);
-
+    const [play, setPlay] = useState(false);
+    // const [pause, setPause] = useState(false);
     const [comment, setComment] = useState('');
     const [errors, setErrors] = useState([]);
     const [commentId, setCommentId] = useState('');
@@ -102,14 +103,15 @@ function SpecificSongPage({isLoaded}){
             <div className="songDetailsDiv">
                 <div className="leftSide">
                     <div className="playSide">
-
-                        <FontAwesomeIcon icon="circle-user" size="4x" className="profileNearTitle"/>
+                        {!play ? <FontAwesomeIcon icon="fa-solid fa-circle-play" size="4x" className="profileNearTitle" onClick={() => setPlay(true)}/> :
+                            <FontAwesomeIcon icon="fa-solid fa-circle-pause" size="4x" className="profileNearTitle" onClick={() => setPlay(false)}/>}
+                        {/* <FontAwesomeIcon icon="circle-user" size="4x" className="profileNearTitle"/> */}
                         <div className="songNameUser">
                             <h1 className='h1Song'><span className="theSongTitle">{theSong.title}</span></h1>
                             <div className='theSongUsername'>{theSong.User.username}</div>
                         </div>
                     </div>
-                        <WaveForm song={`${theSong.url}`}/>
+                        <WaveForm song={theSong.url} play={play} setPlay={setPlay}/>
                         {/* <audio controls src={`${theSong.url}`}></audio> */}
                 </div>
                 <div className="rightSide">
