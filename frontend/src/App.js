@@ -15,8 +15,12 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(allSongs())
-    dispatch(restoreUser()).then(() => setIsLoaded(true));
+    (async() => {
+      await dispatch(restoreUser())
+      await dispatch(allSongs())
+      setIsLoaded(true)
+    })();
+
   }, [dispatch])
 
   return (
