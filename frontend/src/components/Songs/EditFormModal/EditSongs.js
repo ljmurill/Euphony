@@ -38,7 +38,7 @@ function EditSong({theSong, setShowModal}){
         if(songError && songError.status === 200){
 
            setShowModal(false);
-           history.push(`/api/songs/${theSong.id}`)
+           history.push(`/songs/${theSong.id}`)
         }
 
     }

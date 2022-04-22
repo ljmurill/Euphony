@@ -62,7 +62,7 @@ function SpecificSongPage({isLoaded}){
             if(commentError && commentError.status === 200){
                 setComment('');
                 setErrors([]);
-                history.push(`/api/songs/${theSong.id}`)
+                history.push(`/songs/${theSong.id}`)
             }
         }else{
             const updatedComment = {
@@ -84,7 +84,7 @@ function SpecificSongPage({isLoaded}){
                 setEdit(false)
                 setComment('');
                 setErrors([]);
-                history.push(`/api/songs/${theSong.id}`)
+                history.push(`/songs/${theSong.id}`)
             }
         }
 

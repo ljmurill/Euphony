@@ -42,7 +42,7 @@ function CommentDeleteEdit({comment, setComment, setEdit, setCommentId, songId})
 
             if(finished && finished.status === 200){
                 dispatch(allComments(songId))
-                history.push(`/api/songs/${songId}`);
+                history.push(`/songs/${songId}`);
             }
     }
 

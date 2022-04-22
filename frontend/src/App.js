@@ -32,10 +32,10 @@ function App() {
           <Route exact={true} path="/">
             <Home isLoaded={isLoaded}/>
           </Route>
-          <Route exact={true} path="/api/songs/create">
+          <Route exact={true} path="/songs/create">
             <CreateSong isLoaded={isLoaded}/>
           </Route>
-          <Route exact={true} path="/api/songs/:songId">
+          <Route exact={true} path="/songs/:songId">
             <SpecificSongPage isLoaded ={isLoaded}/>
           </Route>
           <Route>

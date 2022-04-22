@@ -68,7 +68,7 @@ function SearchBar({allSongs}){
                 }
             </label>
                 <p className="orText">or</p>
-                {sessionUser ? <Link to='/api/songs/create'><button className="uploadButton">Upload Your Own</button></Link> : <LoginUploadModal/>}
+                {sessionUser ? <Link to='/songs/create'><button className="uploadButton">Upload Your Own</button></Link> : <LoginUploadModal/>}
 
         </div>
         </div>

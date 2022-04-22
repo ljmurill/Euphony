@@ -40,7 +40,7 @@ function Home({isLoaded}){
                 {sessionUser && songsArr && songsArr.map((song, id) => {
 
                     return (id < 20 &&
-                        <Link to={`/api/songs/${song.id}`} key={id} className='linkSong'>
+                        <Link to={`/songs/${song.id}`} key={id} className='linkSong'>
                         <div className="songBlock">
                             <div className="imageDiv">
                                 {song.imageUrl ? <img src={song.imageUrl} alt='' className='songImage'/>: <img alt='' src={defaultImage} className='songImage'/>}

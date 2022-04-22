@@ -10,7 +10,7 @@ function RelatedSongs({songs, theSong}){
     return(
         <div className='relatedSongsDiv'>
             {songs && songs.map((song, i) => (
-                <Link key={i} to={`/api/songs/${song.id}`} className='relatedLink'>
+                <Link key={i} to={`/songs/${song.id}`} className='relatedLink'>
                 {theSong.id !== song.id &&
                 <div key={song.id} className='relatedSongsInfo'>
 
