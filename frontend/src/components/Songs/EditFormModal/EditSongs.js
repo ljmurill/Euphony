@@ -71,8 +71,8 @@ function EditSong({theSong, setShowModal}){
                     placeholder="Title"
                     className="input"
                     type='text'/>
-                    <input type='file' name='image' hidden onChange={updateFileImage}/>
-                    <label htmlFor='imageFile'><FontAwesomeIcon icon="fa-solid fa-file-image" color='white' size="2x" className="iconHover"/>
+                    <input type='file' id='imageEditFile' name='image' hidden onChange={updateFileImage}/>
+                    <label htmlFor='imageEditFile'><FontAwesomeIcon icon="fa-solid fa-file-image" color='white' size="2x" className="iconHover"/>
                     {imageUrl ? <FontAwesomeIcon icon="fa-solid fa-circle-check" color="green" className="checkmarkImage"/> : ''}</label>
                     {/* <input
                     onChange={(e) => setImageUrl(e.target.value)}
