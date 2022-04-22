@@ -32,6 +32,11 @@ function SpecificSongPage({isLoaded}){
     const commentsArr = useSelector(state => state.comments);
     const userSongs = useSelector(state => state.songs.relatedSongs);
 
+    useEffect(() => {
+        dispatch(allSongs())
+        dispatch(allComments(songId))
+        dispatch(getAllUserSongs(theSong.User.id));
+    }, [])
 
     useEffect(() =>{
         dispatch(allSongs())
