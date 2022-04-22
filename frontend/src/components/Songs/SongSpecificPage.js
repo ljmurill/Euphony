@@ -13,6 +13,7 @@ import RelatedSongs from "./RelatedSongs/RelatedSongs";
 import { getAllUserSongs } from "../../store/songs";
 import Player from "../AudioPlayer/AudioPlayer";
 import WaveForm from "./WaveSurfer/Wavesurfer";
+import {allSongs} from "../../store/songs";
 
 function SpecificSongPage({isLoaded}){
     const defaultImage = 'https://preview.redd.it/e1l2mfuraia51.jpg?width=960&crop=smart&auto=webp&s=598397a1367b7a4a7c273d10a0298d6b848a1c94';
