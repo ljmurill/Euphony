@@ -20,7 +20,6 @@ function App() {
       await dispatch(allSongs())
       setIsLoaded(true)
     })();
-
   }, [dispatch])
 
   return (
@@ -28,14 +27,14 @@ function App() {
       {/* <Navigation isLoaded={isLoaded} /> */}
       {isLoaded && (
         <Switch>
-          <Route exact path="/">
+          <Route exact={true} path="/">
             <Home isLoaded={isLoaded}/>
           </Route>
-          <Route exact path="/api/songs/create">
+          <Route exact={true} path="/api/songs/create">
             <CreateSong isLoaded={isLoaded}/>
           </Route>
-          <Route exact path="/api/songs/:songId">
-              <SpecificSongPage isLoaded ={isLoaded}/>
+          <Route exact={true} path="/api/songs/:songId">
+            <SpecificSongPage isLoaded ={isLoaded}/>
           </Route>
           <Route>
             404 Page
