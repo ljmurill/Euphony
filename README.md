@@ -8,15 +8,16 @@ This app makes use of the following technologies:
 - Javascript
 - Sequelize
 - PostgreSQL
+- AWS/S3
+- Waveform.js
 
 ## Features
 ### Home Page
 This is the home page of Euphony which will show you the 20 most recent songs as well as a search bar where you can search for any song!
-![image](https://user-images.githubusercontent.com/72574258/164094348-d2003d62-5418-4cfe-8593-24868f71f0ba.png)
+![image](https://user-images.githubusercontent.com/72574258/164816425-f5cf9dfd-0962-4a0d-b37a-b57c52575d24.png)
 ### Song Page
 In Euphony you will be able to upload, edit, and delete songs as well as comments!
-![image](https://user-images.githubusercontent.com/72574258/164094361-f779a993-a56b-44bc-bafa-b29fc421936c.png)
-
+![image](https://user-images.githubusercontent.com/72574258/164816454-223af04b-1856-4549-b70d-da6b17188104.png)
 
 ## Installation
 1. Clone this repo.
