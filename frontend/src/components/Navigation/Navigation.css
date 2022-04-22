@@ -34,7 +34,7 @@
     right: 160px;
     background-color: white;
     box-shadow: -1px 1px 15px -4px #fff;
-    width: 130px;
+    /* width: 150px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -133,9 +133,9 @@
 .profile-section{
     display: flex;
     gap: 10px;
-    width: 100%;
+    /* width: 100%; */
     justify-content: center;
-    padding: 10px 0;
+    padding: 10px;
     align-items: center;
 }
 
