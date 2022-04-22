@@ -33,6 +33,7 @@ function SpecificSongPage({isLoaded}){
 
 
     useEffect(() =>{
+        dispatch(allSongs())
         dispatch(allComments(songId))
         dispatch(getAllUserSongs(theSong.User.id));
     }, [dispatch, songId, theSong.User.id])
