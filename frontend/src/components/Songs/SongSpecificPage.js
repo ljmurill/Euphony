@@ -56,7 +56,11 @@ function SpecificSongPage({isLoaded}){
             const commentError =  await dispatch(postComment(newComment, theSong.id))
                 .catch(async (res) => {
                     const data = await res.json();
-                    if(data && data.errors) setErrors(data.errors);
+                    if(data && data.errors) {
+                        setErrors(data.errors)
+                        setTimeout(() => {
+                            setErrors([])
+                        }, 3000)};
                 })
 
             if(commentError && commentError.status === 200){
@@ -74,7 +78,11 @@ function SpecificSongPage({isLoaded}){
             const updateError = await dispatch(updateOneComment(updatedComment, commentId, theSong.id))
                 .catch(async (res) => {
                     const data = await res.json();
-                    if(data && data.errors) setErrors(data.errors);
+                    if(data && data.errors) {
+                        setErrors(data.errors)
+                        setTimeout(() => {
+                            setErrors([])
+                        }, 3000)};
                 })
 
             if(updateError && updateError.status === 200){
