@@ -6,7 +6,7 @@ import '../HomePage/homePage.css'
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LoginSearchModal from "../LoginFormModal/loginSearchSetUp";
-
+import UploadModal from "./createModal";
 const defaultImage = 'https://preview.redd.it/e1l2mfuraia51.jpg?width=960&crop=smart&auto=webp&s=598397a1367b7a4a7c273d10a0298d6b848a1c94';
 function SearchBar({allSongs}){
     const [search, setSearch] = useState([]);
@@ -68,7 +68,7 @@ function SearchBar({allSongs}){
                 }
             </label>
                 <p className="orText">or</p>
-                {sessionUser ? <Link to='/songs/create'><button className="uploadButton">Upload Your Own</button></Link> : <LoginUploadModal/>}
+                {sessionUser ? <UploadModal/> : <LoginUploadModal/>}
 
         </div>
         </div>

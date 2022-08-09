@@ -7,7 +7,7 @@ import { useHistory, Redirect } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
-function CreateSong({isLoaded}){
+function CreateSong({isLoaded, setShowModal}){
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
@@ -35,7 +35,9 @@ function CreateSong({isLoaded}){
             })
 
         if(songError && songError.status === 200){
+            setShowModal(false)
             history.push('/');
+
         }
     }
 
@@ -50,9 +52,9 @@ function CreateSong({isLoaded}){
         if (file) setSong(file);
         };
     return(
-        <div className="createSong">
-            <Navigation isLoaded={isLoaded}/>
-            <div className="createSongDiv">
+        <div className="editSong">
+            {/* <Navigation isLoaded={isLoaded}/> */}
+            <div className="editSongDiv">
                 <div className="formHeader">
                 <h1 className="formTitle">Share your Music</h1>
                 <FontAwesomeIcon icon="headphones" className="headphones" size="2x"/>
